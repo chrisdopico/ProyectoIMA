@@ -15,11 +15,11 @@ public class Escuderia {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name= "nombre", nullable=false)
+	@Column(name= "nombre")
 	private String nombre;
-	@Column(name= "logo", nullable=false)
+	@Column(name= "logo")
 	private String logo;
-	@Column(name= "twitter", nullable=false)
+	@Column(name= "twitter")
 	private String twitter;
 
 	

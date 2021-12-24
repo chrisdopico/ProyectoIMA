@@ -24,8 +24,8 @@ public class CircuitoController {
 	
 	@GetMapping("/circuitos")
 	public String listCircuitos(Model model) {
-		model.addAttribute("circuito",circuitoService.getAllCircuitos());
-		return "viewCircuito/circuitos";
+		model.addAttribute("circuitos",circuitoService.getAllCircuitos());		
+		return "views_circuitos/circuitos";
 		 
 	}
 	
@@ -35,7 +35,7 @@ public class CircuitoController {
 	public String createCircuitoForm(Model model) {
 		Circuito circuito= new Circuito();
 		model.addAttribute("circuito",circuito);
-		return "viewCircuito/create_circuito";
+		return "views_circuitos/create_circuito";
 	}
 	
 	
@@ -51,7 +51,7 @@ public class CircuitoController {
 	@GetMapping("/circuitos/edit/{id}")
 	public String editCircuitosForm(@PathVariable Long id,Model model) {
 		model.addAttribute("circuito",circuitoService.getCircuitoById(id));
-		return "viewCircuito/edit_circuito";
+		return "views_circuitos/edit_circuito";
 	}  
 	
 
@@ -65,6 +65,7 @@ public class CircuitoController {
 		circuitoExistente.setNombre(circuito.getNombre());
 		circuitoExistente.setPais(circuito.getPais());
 		circuitoExistente.setTrazado(circuito.getTrazado());
+		circuitoExistente.setLongitud(circuito.getLongitud());
 		circuitoExistente.setNumero_de_vueltas(circuito.getNumero_de_vueltas());
 		circuitoExistente.setCurvas_lentas(circuito.getCurvas_lentas());
 		circuitoExistente.setCurvas_medias(circuito.getCurvas_medias());
@@ -72,14 +73,14 @@ public class CircuitoController {
 		
 		circuitoService.updateCircuito(circuitoExistente);
 	
-		return "redirect:/pilotos";
+		return "redirect:/circuitos";
 	}
 	
 	
 	@GetMapping("/circuitos/{id}")
 	public String deleteCircuito(@PathVariable Long id) {
 		circuitoService.deleteCircuitoById(id);
-		return "redirect:/circuito";
+		return "redirect:/circuitos";
 	}
 	
 	

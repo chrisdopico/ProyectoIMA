@@ -55,36 +55,54 @@
 	</nav>
 	<div class="container-fluid">
 		<div>
-			<a th:href="@{/usuarios}" class="btn btn-primary">Usuarios</a>
-			<a th:href="@{/noticias}" class="btn btn-primary">Noticias</a>
-			<a th:href="@{/administrar}" class="btn btn-primary">Votaciones</a>
-			<a th:href="@{/administrar}" class="btn btn-primary">Calendario</a>
-			<a th:href="@{/administrar}" class="btn btn-primary">Equipos</a>
-			<a th:href="@{/circuitos}" class="btn btn-primary">Circuitos</a>
-		</div>
+			<a th:href="@{/responsable}" class="btn btn-primary">Miembros</a>
+			<a th:href="@{/responsable}" class="btn btn-primary">Equipos</a>
+			<a th:href="@{/pilotos}" class="btn btn-primary">Pilotos</a>
+			<a th:href="@{/responsable}" class="btn btn-primary">Coches</a>
+			<a th:href="@{/responsable}" class="btn btn-primary">Herramientas de Simulación</a>
+			</div>
 	</div>
 	<hr>
 
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-				<h1>Crear Nueva Noticia</h1>
+				<h1>Editar Piloto</h1>
 				<div class="card-body">
-					<form th:action="@{/noticias}" th:object="${noticia}" method="POST">
+					<form th:action="@{/pilotos/{id} (id=${piloto.id})}" th:object="${piloto}" method="POST">
 						<div class="form-group">
-							<label>Título de Noticia</label>
-							<input type="text" name"titulo" th:field="*{titulo}"
+							<label>Nombre</label>
+							<input type="text" name"nombre" th:field="*{nombre}"
 								placeholder="Ingresar Título de Noticia" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Texto de la Noticia</label>
-							<textarea type="text" name"texto" th:field="*{texto}"
-								placeholder="Ingresar Texto de Noticia" class="form-control" rows="10" cols="40"
-								required></textarea>
+							<label>Apellidos</label>
+							<input type="text" name"apellidos" th:field="*{apellidos}"
+								placeholder="Ingresar Apellidos" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Link Imagen</label>
-							<input type="text" name"link" th:field="*{imagen}" placeholder="Ingresar Link de Imagen"
+							<label>Dorsal</label>
+							<input type="text" name"dorsal" th:field="*{dorsal}"
+								placeholder="Ingresar Título de Noticia" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>País</label>
+							<input type="text" name"pais" th:field="*{pais}"
+								placeholder="Ingresar País" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Siglas</label>
+							<input type="text" name"siglas" th:field="*{siglas}"
+								placeholder="Ingresar Siglas" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Twitter</label>
+							<input type="text" name"twitter" th:field="*{twitter}"
+								placeholder="Ingresar Twitter" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Foto</label>
+							<input type="text" name"link" th:field="*{foto}" placeholder="Ingresar Link de la foto"
 								class="form-control" required>
 						</div>
 						<br>
