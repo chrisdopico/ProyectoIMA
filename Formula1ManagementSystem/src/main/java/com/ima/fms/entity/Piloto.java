@@ -1,11 +1,16 @@
 package com.ima.fms.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Table(name="t_pilotos")
@@ -36,6 +41,11 @@ public class Piloto {
 	@Column(name= "twitter", nullable=false)
 	private String twitter;
 	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+	@JoinTable(name = "pilotos_escuderia", joinColumns = @JoinColumn(name = "piloto_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "escuderia_id", referencedColumnName = "id"))
+
+	Escuderia escuderia;
 	
 	public Piloto () {
 		

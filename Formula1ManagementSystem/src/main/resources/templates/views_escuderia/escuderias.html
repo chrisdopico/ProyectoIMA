@@ -4,13 +4,14 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>F1 Managment System</title>
+	<title>F1 Management System</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
 <body>
 	<div class="container-fluid">
+		<!-- Encabezado -->
 		<header>
 			<!-- Logo -->
 			<figure>
@@ -19,15 +20,12 @@
 			</figure>
 			<!-- Titulo -->
 			<h1>FORMULA 1</h1>
-			<!-- create navigation bar ( header) -->
-
 			<span sec:authentication="principal.username"> User</span>
 
 			<div class="navbar-header">
 				<a sec:authorize="isAuthenticated()"><a class="navbar-brand" href="#" th:href="@{/logout}">Cerrar
 						sesión</a>
 			</div>
-
 
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 				<a href="#" th:href="@{/login}" class="btn btn-primary me-md-2" type="button">Login</a>
@@ -56,54 +54,50 @@
 	</nav>
 	<div class="container-fluid">
 		<div>
-			<a th:href="@{/usuarios}" class="btn btn-primary">Usuarios</a>
-			<a th:href="@{/noticias}" class="btn btn-primary">Noticias</a>
-			<a th:href="@{/administrar}" class="btn btn-primary">Votaciones</a>
-			<a th:href="@{/administrar}" class="btn btn-primary">Calendario</a>
-			<a th:href="@{/administrar}" class="btn btn-primary">Equipos</a>
-			<a th:href="@{/circuitos}" class="btn btn-primary">Circuitos</a>
-		</div>
+			<a th:href="@{/responsable}" class="btn btn-primary">Miembros</a>
+			<a th:href="@{/escuderias}" class="btn btn-primary">Equipos</a>
+			<a th:href="@{/pilotos}" class="btn btn-primary">Pilotos</a>
+<!--			<a th:href="@{/pilotos(id=${escuderia.id})}" class="btn btn-primary">Pilotos</a>-->
+			<a th:href="@{/responsable}" class="btn btn-primary">Coches</a>
+			<a th:href="@{/responsable}" class="btn btn-primary">Herramientas de Simulación</a>
+			</div>
 	</div>
-	<hr>
-
+	
+	
 	<div class="container">
 		<div class="row">
-			<h1>Listado de Usuarios</h1>
+			<h1>Mi Escudería</h1>
 		</div>
-		<a class="navbar-brand" href="#" th:href="@{/rolesList}">Lista de Roles</a>
 
 		<table class="table table-striped table bordered">
 			<thead class="table-dark">
 				<tr>
 					<th>Id</th>
-					<th>Email</th>
 					<th>Nombre</th>
-					<th>Usuario</th>
-					<th>Rol</th>
-					<th>Estado de Habilitado</th>
+					<th>Twitter</th>
+					<th>Logo</th>
 					<th>Acción</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="user: ${usuarios}">
-					<td th:text="${user.id}"></td>
-					<td th:text="${user.email}"></td>
-					<td th:text="${user.name}"></td>
-					<td th:text="${user.user}"></td>
-					<td th:text="${user.roles}"></td>
-					<td th:text="${user.enabled}"></td>
+				<tr th:each="escuderia: ${escuderias}">
+					<td th:text="${escuderia.id}"></td>
+					<td th:text="${escuderia.nombre}"></td>
+					<td th:text="${escuderia.twitter}"></td>
+					<td><img th:src="${escuderia.logo}" width="100" height="100"></td>
 					<td>
-						<a th:href="@{/usuarios/validarUser/{id}(id=${user.id})}" class="btn btn-primary">Validar
-							Usuario</a>
-						<a th:href="@{/usuarios/invalidarUser/{id}(id=${user.id})}" class="btn btn-primary">Invalidar
-							Usuario</a>
-						<a th:href="@{/usuarios/{id}(id=${user.id})}" class="btn btn-danger">Eliminar usuario</a>
+						<a th:href="@{/escuderias/edit/{id}(id=${escuderia.id})}" class="btn btn-primary">Editar</a>
+		<!--				<a th:href="@{/escuderias/{id}(id=${escuderia.id})}" class="btn btn-danger">Eliminar</a>-->
 
 					</td>
 				</tr>
+
 			</tbody>
 		</table>
-		<br>
 	</div>
+	
+	
+	
+</body>
 
 </html>

@@ -47,18 +47,31 @@
 	</div><br>
 	<div class="container">
 		<div class="row">
-			<div class="col-xl-3" th:each="noticia:${noticias}">
-				<div class="card" style="width: 15rem;">
-					<img class="card-img-top" th:src="${noticia.imagen}" alt="Card image cap">
-					<div class="card-body">
-						<p class="card-title" th:text="${noticia.titulo}"></p>
-						<hr>
-						<a th:href="@{/leer/{id}(id=${noticia.id})}" class="btn btn-primary">Leer Noticia</a>
-					</div>
-				</div>
-				<hr>
-			</div>
+			<h1>Escuderías</h1>
 		</div>
+
+		<table class="table table-striped table bordered">
+			<thead class="table-dark">
+				<tr>
+					<th>Nombre</th>
+					<th>Twitter</th>
+					<th>Logo</th>
+					<th>Datos de la escudería</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="escuderia: ${escuderias}">
+					<td th:text="${escuderia.nombre}"></td>
+					<td th:text="${escuderia.twitter}"></td>
+					<td><img th:src="${escuderia.logo}" width="100" height="100"></td>
+				<td>
+						<a th:href="@{/all_escuderias}" class="btn btn-primary">Pilotos</a>
+						<a th:href="@{/all_escuderias}"class="btn btn-primary">Coches</a>
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </body>
 

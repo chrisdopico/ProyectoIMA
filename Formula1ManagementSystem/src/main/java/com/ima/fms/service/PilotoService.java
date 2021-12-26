@@ -7,6 +7,8 @@ public interface PilotoService {
 	
 	List<Piloto> getAllPilotos();
 	
+	List<Piloto> getPilotosByTeam(Long id);
+	
 	Piloto savePilotos(Piloto piloto);
 	
 	Piloto getPilotoById(Long id);

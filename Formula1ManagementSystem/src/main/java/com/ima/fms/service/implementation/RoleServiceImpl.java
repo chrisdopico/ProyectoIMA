@@ -32,4 +32,9 @@ public class RoleServiceImpl implements RoleService {
 	public List<Role> findAll() {
 		return roleRepository.findAll();
 	}
+
+	public void deleteById(Long id) {
+		roleRepository.deleteById(id);		
+	}
+	
 }

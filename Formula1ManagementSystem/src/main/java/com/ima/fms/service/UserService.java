@@ -18,7 +18,7 @@ public interface UserService extends UserDetailsService {
 	User updateUser(User user);
 
 	void deleteUserById(Long id);
-
+	
 	User save(User user);
 
 	List<Role> getRoles();

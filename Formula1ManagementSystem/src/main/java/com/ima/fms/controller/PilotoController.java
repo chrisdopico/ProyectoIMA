@@ -25,6 +25,7 @@ public class PilotoController {
 	@GetMapping("/pilotos")
 	public String listPilotos(Model model) {
 		model.addAttribute("pilotos",pilotoService.getAllPilotos());
+//		model.addAttribute("pilotos",pilotoService.getPilotosByTeam(id));
 		return "views_pilotos/pilotos";
 		 
 	}

@@ -26,6 +26,16 @@ public class PilotoServiceImplementation implements PilotoService{
 		return pilotoRepository.findAll();
 	}
 	
+	public List<Piloto> getPilotosByTeam(Long id){
+	/*	List<Piloto> pilotos = pilotoRepository.findAll();
+		List<Piloto> pilotos2;
+		
+		for(int i = 0; i <= pilotos.size(); i++) {
+			if(pilotos)
+		}*/
+		return pilotoRepository.findAll();
+	}
+	
 	@Override
 	public Piloto savePilotos(Piloto piloto) {
 		return pilotoRepository.save(piloto);

@@ -1,5 +1,10 @@
 package com.ima.fms.controller;
 
+import java.util.List;
+
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -7,7 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ima.fms.entity.Escuderia;
+import com.ima.fms.entity.User;
 import com.ima.fms.service.EscuderiaService;
+import com.ima.fms.service.UserService;
+
 import org.springframework.ui.Model;
 
 @Controller
@@ -20,16 +28,12 @@ public class EscuderiaController {
 		this.escuderiaService = escuderiaService;
 	}
 	
-	
-	
-	@GetMapping("/escuderias")
+	@GetMapping("/all_escuderias")
 	public String listEscuderias(Model model) {
-		model.addAttribute("escuderia",escuderiaService.getAllEscuderias());
-		return "viewEscuderia/escuderias";
+		model.addAttribute("escuderias",escuderiaService.getAllEscuderias());
+		return "views_escuderia/all_escuderias";
 		 
 	}
-	
-	
 	
 	@GetMapping("/escuderias/crear")
 	public String createEscuderiaForm(Model model) {
@@ -41,7 +45,7 @@ public class EscuderiaController {
 	
 
 	
-	@PostMapping("/escuderias")
+	@PostMapping("/save_escuderias")
 	public String saveEscuderia(@ModelAttribute("escuderia")Escuderia escuderia) {
 		escuderiaService.saveEscuderia(escuderia);
 		return "redirect:/escuderias";
@@ -51,7 +55,7 @@ public class EscuderiaController {
 	@GetMapping("/escuderias/edit/{id}")
 	public String editEscuderiaForm(@PathVariable Long id,Model model) {
 		model.addAttribute("escuderia",escuderiaService.getEscuderiaById(id));
-		return "viewEscuderia/edit_escuderia";
+		return "views_escuderia/edit_escuderia";
 	}  
 	
 

@@ -38,9 +38,25 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User save(User userReg) {
+		
+		for(int i = 0; i < userReg.getRoles().size(); i ++) {
+			
+			if(userReg.getRoles().toString().equals("[Administrador]")) {
+				
+				User user = new User(userReg.getName(), userReg.getUser(), userReg.getEmail(),
+						passwordEncoder.encode(userReg.getPassword()), userReg.isEnabled(), userReg.getRoles());
+				return userRepository.save(user);
+			}
+			
+		}
+		
+		Escuderia escuderia = new Escuderia();
+		escuderia.setLogo("https://th.bing.com/th/id/OIP.IAcZdfxtyq4z1ts6R0AbCgHaHa?pid=ImgDet&rs=1");
+		escuderia.setNombre("En espera de creación");
+		escuderia.setTwitter("En espera de creación");
+		
 		User user = new User(userReg.getName(), userReg.getUser(), userReg.getEmail(),
-				passwordEncoder.encode(userReg.getPassword()), userReg.isEnabled(), userReg.getRoles(), new Escuderia());
-
+				passwordEncoder.encode(userReg.getPassword()), userReg.isEnabled(), userReg.getRoles(), escuderia);
 		return userRepository.save(user);
 	}
 

@@ -11,13 +11,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.JoinColumn;
 
 @Entity
-@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "user")
+//(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "user"))
 public class User {
 
 	@Id
@@ -45,7 +46,7 @@ public class User {
 
 	Collection<Role> roles;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 
 	@JoinTable(name = "users_escuderia", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "escuderia_id", referencedColumnName = "id"))
 
@@ -64,6 +65,16 @@ public class User {
 		this.enabled = enabled;
 		this.roles = roles;
 		this.escuderia = escuderia;
+	}
+	
+	public User(String name, String user, String email, String password, Boolean enabled, Collection<Role> roles) {
+		super();
+		this.name = name;
+		this.user = user;
+		this.email = email;
+		this.password = password;
+		this.enabled = enabled;
+		this.roles = roles;
 	}
 
 	public Long getId() {
