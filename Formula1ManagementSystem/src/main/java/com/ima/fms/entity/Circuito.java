@@ -139,17 +139,4 @@ public class Circuito {
 	public void setCurvas_rapidas(Long curvas_rapidas) {
 		this.curvas_rapidas = curvas_rapidas;
 	}
-	
-	
-	
-
-
-	
-	
-	
-	
-	
-	
-	
-	
 }

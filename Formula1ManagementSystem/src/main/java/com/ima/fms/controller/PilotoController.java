@@ -25,7 +25,7 @@ public class PilotoController {
 	@GetMapping("/pilotos")
 	public String listPilotos(Model model) {
 		model.addAttribute("pilotos",pilotoService.getAllPilotos());
-		return "viewPilotos/pilotos";
+		return "views_pilotos/pilotos";
 		 
 	}
 	
@@ -35,13 +35,13 @@ public class PilotoController {
 	public String createPilotoForm(Model model) {
 		Piloto piloto= new Piloto();
 		model.addAttribute("piloto",piloto);
-		return "viewPiloto/create_piloto";
+		return "views_pilotos/create_piloto";
 	}
 	
 	
 
 	
-	@PostMapping("/pilotos")
+	@PostMapping("/save_pilotos")
 	public String savePiloto(@ModelAttribute("piloto") Piloto piloto) {
 		pilotoService.savePilotos(piloto);
 		return "redirect:/pilotos";
@@ -51,7 +51,7 @@ public class PilotoController {
 	@GetMapping("/pilotos/edit/{id}")
 	public String editPilotosForm(@PathVariable Long id,Model model) {
 		model.addAttribute("piloto",pilotoService.getPilotoById(id));
-		return "viewPiloto/edit_piloto";
+		return "views_pilotos/edit_piloto";
 	}  
 	
 
@@ -77,7 +77,7 @@ public class PilotoController {
 	@GetMapping("/pilotos/{id}")
 	public String deletePiloto(@PathVariable Long id) {
 		pilotoService.deletePilotoById(id);
-		return "redirect:/piloto";
+		return "redirect:/pilotos";
 	}
 	
 	

@@ -68,24 +68,53 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-				<h1>Crear Nueva Noticia</h1>
+				<h1>Editar Circuito</h1>
 				<div class="card-body">
-					<form th:action="@{/noticias}" th:object="${noticia}" method="POST">
+					<form th:action="@{/circuitos/{id} (id=${circuito.id})}" th:object="${circuito}" method="POST">
 						<div class="form-group">
-							<label>Título de Noticia</label>
-							<input type="text" name"titulo" th:field="*{titulo}"
-								placeholder="Ingresar Título de Noticia" class="form-control" required>
+							<label>Nombre de Circuito</label>
+							<input type="text" name"nombre" th:field="*{nombre}"
+								placeholder="Nombre de Circuito" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Texto de la Noticia</label>
-							<textarea type="text" name"texto" th:field="*{texto}"
-								placeholder="Ingresar Texto de Noticia" class="form-control" rows="10" cols="40"
-								required></textarea>
+							<label>Ciudad de Circuito</label>
+							<input type="text" name"ciudad" th:field="*{ciudad}"
+								placeholder="Ciudad de Circuito" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Link Imagen</label>
-							<input type="text" name"link" th:field="*{imagen}" placeholder="Ingresar Link de Imagen"
-								class="form-control" required>
+							<label>País de Circuito</label>
+							<input type="text" name"pais" th:field="*{pais}"
+								placeholder="País de Circuito" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Longitud de Circuito</label>
+							<input type="number" min="0" name"longitud" th:field="*{longitud}"
+								placeholder="Longitud de Circuito" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Número de vueltas del Circuito</label>
+							<input type="number" min="0" step="1" name"vueltas" th:field="*{numero_de_vueltas}"
+								placeholder="Número de vueltas del Circuito" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Número de curvas lentas del Circuito</label>
+							<input type="number" min="0" step="1" name"curvaslentas" th:field="*{curvas_lentas}"
+								placeholder="Número de curvas lentas del Circuito" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Número de curvas medias del Circuito</label>
+							<input type="number" min="0" step="1" name"curvasmedias" th:field="*{curvas_medias}"
+								placeholder="Número de curvas medias del Circuito" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Número de curvas rápidas del Circuito</label>
+							<input type="number" min="0" step="1" name"curvasrapidas" th:field="*{curvas_rapidas}"
+								placeholder="Número de curvas rápidas del Circuito" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Trazado de Circuito</label>
+							<input type="text" name"trazado" th:field="*{trazado}"
+								placeholder="Trazado de Circuito" class="form-control" required>
 						</div>
 						<br>
 						<div class="box-footer">

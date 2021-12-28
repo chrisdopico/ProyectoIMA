@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.JoinColumn;
@@ -43,12 +44,18 @@ public class User {
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 
 	Collection<Role> roles;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+	@JoinTable(name = "users_escuderia", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "escuderia_id", referencedColumnName = "id"))
+
+	Escuderia escuderia;
 
 	public User() {
 
 	}
 
-	public User(String name, String user, String email, String password, Boolean enabled, Collection<Role> roles) {
+	public User(String name, String user, String email, String password, Boolean enabled, Collection<Role> roles, Escuderia escuderia) {
 		super();
 		this.name = name;
 		this.user = user;
@@ -56,6 +63,7 @@ public class User {
 		this.password = password;
 		this.enabled = enabled;
 		this.roles = roles;
+		this.escuderia = escuderia;
 	}
 
 	public Long getId() {
@@ -112,6 +120,14 @@ public class User {
 
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Escuderia getEscuderia() {
+		return escuderia;
+	}
+
+	public void setEscuderia(Escuderia escuderia) {
+		this.escuderia = escuderia;
 	}
 
 }

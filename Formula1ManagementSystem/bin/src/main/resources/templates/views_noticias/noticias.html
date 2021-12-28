@@ -12,49 +12,57 @@
 <body>
 
 	<div class="container-fluid">
-		<!-- Encabezado -->
 		<header>
 			<!-- Logo -->
 			<figure>
-				<img src="https://www.thedesignfrontier.com/wp-content/uploads/2019/05/f1-logo.png" alt="" width="100"
+				<img src="https://www.thedesignfrontier.com/wp-content/uploads/2019/05/f1-logo.png" width="100"
 					height="100">
 			</figure>
 			<!-- Titulo -->
 			<h1>FORMULA 1</h1>
+			<!-- create navigation bar ( header) -->
 			<span sec:authentication="principal.username"> User</span>
 
 			<div class="navbar-header">
-				<li sec:authorize="isAuthenticated()"><a class="navbar-brand" href="#" th:href="@{/logout}">Cerrar
+				<a sec:authorize="isAuthenticated()"><a class="navbar-brand" href="#" th:href="@{/logout}">Cerrar
 						sesión</a>
-				</li>
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<a class="btn btn-primary me-md-2" type="button">Login</a>
-					<a class="btn btn-primary" type="button">Sign in</a>
-				</div>
+			</div>
+
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				<a href="#" th:href="@{/login}" class="btn btn-primary me-md-2" type="button">Login</a>
+				<a href="#" th:href="@{/registration}" class="btn btn-primary" type="button">Regístrate</a>
+			</div>
+			<br>
 
 		</header>
-		<!-- MENU -->
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
 
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-					data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-					<div class="navbar-nav">
-						<a class="nav-link active" aria-current="page" th:href="@{/}">Noticias</a>
-						<a class="nav-link" href="http://www.google.com">Calendario</a>
-						<a class="nav-link" href="http://www.google.com">Equipos</a>
-						<a class="nav-link" href="http://www.google.com">Circuitos</a>
-						<a class="nav-link" th:href="@{/administrar}">Administrar</a>
-					</div>
+	</div>
+	<!-- MENU -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link active" aria-current="page" th:href="@{/}">Noticias</a>
+					<a class="nav-link" href="http://www.google.com">Calendario</a>
+					<a class="nav-link" href="http://www.google.com">Votaciones</a>
+					<a class="nav-link" href="http://www.google.com">Equipos</a>
+					<a class="nav-link" href="http://www.google.com">Circuitos</a>
+					<a class="nav-link" th:href="@{/responsable}">Responsable</a>
+					<a class="nav-link" th:href="@{/administrar}">Administrar</a>
 				</div>
 			</div>
-		</nav>
+		</div>
+	</nav>
+	<div class="container-fluid">
+		<div>
+			<a th:href="@{/usuarios}" class="btn btn-primary">Usuarios</a>
+			<a th:href="@{/noticias}" class="btn btn-primary">Noticias</a>
+			<a th:href="@{/administrar}" class="btn btn-primary">Votaciones</a>
+			<a th:href="@{/administrar}" class="btn btn-primary">Calendario</a>
+			<a th:href="@{/administrar}" class="btn btn-primary">Equipos</a>
+			<a th:href="@{/administrar}" class="btn btn-primary">Circuitos</a>
+		</div>
 	</div>
-
 	<hr>
 
 	<div class="container">

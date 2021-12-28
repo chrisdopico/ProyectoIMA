@@ -26,21 +26,21 @@
         </header>
         <!-- MENU -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="index.html"> Noticias</a>
-                <a class="nav-link" href="calendario.html">Calendario</a>
-                <a class="nav-link" href="equipos.html">Equipos</a>
-                <a class="nav-link" href="circuitos.html">Circuitos</a>
-                </div>
-            </div>
-            </div>
-        </nav>
+		<div class="container-fluid">
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link active" aria-current="page" th:href="@{/}">Noticias</a>
+					<a class="nav-link" href="http://www.google.com">Calendario</a>
+					<a class="nav-link" href="http://www.google.com">Votaciones</a>
+					<a class="nav-link" href="http://www.google.com">Equipos</a>
+					<a class="nav-link" href="http://www.google.com">Circuitos</a>
+					<a class="nav-link" th:href="@{/responsable}">Responsable</a>
+					<a class="nav-link" th:href="@{/administrar}">Administrar</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
         <!-- Presentacion -->
         <h2 th:text="${noticia.titulo}"></h2>
         <p th:text="${noticia.texto}"></p>

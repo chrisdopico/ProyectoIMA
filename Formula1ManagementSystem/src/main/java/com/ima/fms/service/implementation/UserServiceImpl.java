@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.ima.fms.service.UserService;
 
 import com.ima.fms.entity.User;
+import com.ima.fms.entity.Escuderia;
 import com.ima.fms.entity.Role;
 import com.ima.fms.repository.RoleRepository;
 import com.ima.fms.repository.UserRepository;
@@ -38,7 +39,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User save(User userReg) {
 		User user = new User(userReg.getName(), userReg.getUser(), userReg.getEmail(),
-				passwordEncoder.encode(userReg.getPassword()), userReg.isEnabled(), userReg.getRoles());
+				passwordEncoder.encode(userReg.getPassword()), userReg.isEnabled(), userReg.getRoles(), new Escuderia());
 
 		return userRepository.save(user);
 	}
