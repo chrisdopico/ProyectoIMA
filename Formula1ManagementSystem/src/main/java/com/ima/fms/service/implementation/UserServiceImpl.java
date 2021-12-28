@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 		
 		for(int i = 0; i < userReg.getRoles().size(); i ++) {
 			
-			if(userReg.getRoles().toString().equals("[Administrador]")) {
+			if(userReg.getRoles().toString().equals("[Administrador]") || userReg.getRoles().toString().equals("[Corresponsable]")) {
 				
 				User user = new User(userReg.getName(), userReg.getUser(), userReg.getEmail(),
 						passwordEncoder.encode(userReg.getPassword()), userReg.isEnabled(), userReg.getRoles());
