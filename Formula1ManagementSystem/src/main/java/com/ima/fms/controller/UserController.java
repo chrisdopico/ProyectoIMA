@@ -62,7 +62,7 @@ public class UserController {
 					|| (!(usuarios.get(i).getEscuderia() == null) && (usuarios.get(i).getRoles().toString().equals("[Corresponsable]")) && 
 							(usuarios.get(i).getEscuderia().equals(escuderia)))) {
 				usuarios2.add(user);
-			//	System.out.println("BBBBBBBBBBBBBBBBBBBBB" + usuarios2.get(i).getName());
+			//	System.out.println("BBBBBBBBBBBBBBBBBBBBB" + usuarios2.get(i).getName());s
 			}
 			
 		}
