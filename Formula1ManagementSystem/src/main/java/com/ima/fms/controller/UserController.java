@@ -32,6 +32,7 @@ public class UserController {
 		return "views_login/usuarios";
 	}
 
+	// Método Get Para miembros
 	@GetMapping("/miembros")
 	public String listMiembros(Model model) {
 
@@ -39,13 +40,13 @@ public class UserController {
 		List<User> usuarios = userService.getAllUsers();
 		List<User> usuarios2 = userService.getAllUsers();
 
-		for (int i = 0; i < usuarios2.size(); i++) {
-			System.out.println("QQQQQQQQQQQQQQQQQQQ" + usuarios2.get(i).getName());
-			usuarios2.remove(i);
+		int a = usuarios2.size();
+		
+		while(a != 0) {
+			usuarios2.remove(a-1);
+			a--;
 		}
-		usuarios2.remove(1);
-		usuarios2.remove(0);
-		System.out.println("QQQQQQQQQQQQQQQQQQQ" + usuarios2.isEmpty());
+
 		Escuderia escuderia = null;
 
 		for (int i = 0; i < usuarios.size(); i++) {
@@ -53,27 +54,29 @@ public class UserController {
 				escuderia = usuarios.get(i).getEscuderia();
 			}
 		}
-		System.out.println("FFFFFFFFFFFFFFFFFFFF" + usuarios2.isEmpty());
-		
+
 		for (int i = 0; i < usuarios.size(); i++) {
 			User user = usuarios.get(i);
-			if(((usuarios.get(i).getEscuderia() == null) && !(usuarios.get(i).getRoles().toString().equals("[Administrador]"))
-					 && !(usuarios.get(i).getRoles().toString().equals("[Responsable]")))
-					|| (!(usuarios.get(i).getEscuderia() == null) && (usuarios.get(i).getRoles().toString().equals("[Corresponsable]")) && 
-							(usuarios.get(i).getEscuderia().equals(escuderia)))) {
+			if (((usuarios.get(i).getEscuderia() == null)
+					&& !(usuarios.get(i).getRoles().toString().equals("[Administrador]"))
+					&& !(usuarios.get(i).getRoles().toString().equals("[Responsable]")))
+					|| (!(usuarios.get(i).getEscuderia() == null)
+							&& (usuarios.get(i).getRoles().toString().equals("[Corresponsable]"))
+							&& (usuarios.get(i).getEscuderia().equals(escuderia)))) {
 				usuarios2.add(user);
+<<<<<<< HEAD
 			//	System.out.println("BBBBBBBBBBBBBBBBBBBBB" + usuarios2.get(i).getName());s
+=======
+>>>>>>> juancarlos-branch
 			}
-			
-		}
-		for (int i = 0; i < usuarios2.size(); i++) {			
-				System.out.println("BBBBBBBBBBBBBBBBBBBBB" + usuarios2.get(i).getName());		
+
 		}
 
 		model.addAttribute("usuarios", usuarios2);
 		return "views_miembros/miembros";
 	}
 
+	// Método Get Para escuderias.
 	@GetMapping("/escuderias")
 	public String listEscuderias(@AuthenticationPrincipal Authentication auth, Model model) {
 
@@ -114,13 +117,20 @@ public class UserController {
 	// Handler method para delete
 	@GetMapping("/usuarios/{id}")
 	public String deleteUser(@PathVariable Long id) {
-		userService.deleteUserById(id);
+		if (userService.getRoles() == null) {
+			userService.deleteUserById(id);
+		} else {
+			userService.getUserById(id).setEscuderia(null);
+			userService.getUserById(id).setRoles(null);
+			userService.deleteUserById(id);
+		}
 		return "redirect:/usuarios";
 	}
-	
+
+	// Handler method para agregar un miembro a una escuderia
 	@GetMapping("/usuarios/agregarAEscuderia/{id}")
 	public String agregarAEscuderia(@PathVariable("id") Long id, Model model) {
-		
+
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		List<User> usuarios = userService.getAllUsers();
 		Escuderia escuderia = null;
@@ -129,18 +139,21 @@ public class UserController {
 				escuderia = usuarios.get(i).getEscuderia();
 			}
 		}
-	
+
 		User user = userService.getUserById(id);
 		user.setEscuderia(escuderia);
-		
+		user.setName_escu(escuderia.getNombre());
+
 		userService.updateUser(user);
 		return "redirect:/miembros";
 	}
-	
+
+	// Handler method para eliminar un miembro de una escuderia
 	@GetMapping("/eliminarDeEscuderia/{id}")
 	public String eliminarDeEscuderia(@PathVariable("id") Long id, Model model) {
 		User user = userService.getUserById(id);
-		user.setEscuderia(null);		
+		user.setEscuderia(null);
+		user.setName_escu(null);
 		userService.updateUser(user);
 		return "redirect:/miembros";
 	}

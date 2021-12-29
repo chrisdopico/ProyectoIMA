@@ -38,6 +38,9 @@ public class User {
 
 	@Column(name = "enabled")
 	private boolean enabled;
+	
+	@Column(name = "name_escu")
+	private String name_escu;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 
@@ -55,7 +58,7 @@ public class User {
 
 	}
 
-	public User(String name, String user, String email, String password, Boolean enabled, Collection<Role> roles, Escuderia escuderia) {
+	public User(String name, String user, String email, String password, Boolean enabled, Collection<Role> roles, Escuderia escuderia, String name_escu) {
 		super();
 		this.name = name;
 		this.user = user;
@@ -64,6 +67,7 @@ public class User {
 		this.enabled = enabled;
 		this.roles = roles;
 		this.escuderia = escuderia;
+		this.name_escu = name_escu;
 	}
 	
 	public User(String name, String user, String email, String password, Boolean enabled, Collection<Role> roles) {
@@ -138,6 +142,14 @@ public class User {
 
 	public void setEscuderia(Escuderia escuderia) {
 		this.escuderia = escuderia;
+	}
+
+	public String getName_escu() {
+		return name_escu;
+	}
+
+	public void setName_escu(String name_escu) {
+		this.name_escu = name_escu;
 	}
 
 }
