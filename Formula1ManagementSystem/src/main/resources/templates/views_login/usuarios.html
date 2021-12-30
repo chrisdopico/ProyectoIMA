@@ -47,7 +47,7 @@
 					<a class="nav-link" href="http://www.google.com">Calendario</a>
 					<a class="nav-link" href="http://www.google.com">Votaciones</a>
 					<a class="nav-link" th:href="@{/all_escuderias}">Escuderías</a>
-					<a class="nav-link" href="http://www.google.com">Circuitos</a>
+					<a class="nav-link" th:href="@{/circuitos_views}">Circuitos</a>
 					<a class="nav-link" th:href="@{/responsable}">Responsable</a>
 					<a class="nav-link" th:href="@{/administrar}">Administrar</a>
 				</div>
@@ -97,8 +97,7 @@
 							Usuario</a>
 						<a th:href="@{/usuarios/invalidarUser/{id}(id=${user.id})}" class="btn btn-primary">Invalidar
 							Usuario</a>
-						<a th:href="@{/usuarios/{id}(id=${user.id})}" class="btn btn-danger">Eliminar usuario</a>
-
+						<a th:href="@{/usuarios/{id}(id=${user.id})}" class="btn btn-danger" data-dismiss="alert">Eliminar usuario</a>
 					</td>
 				</tr>
 			</tbody>

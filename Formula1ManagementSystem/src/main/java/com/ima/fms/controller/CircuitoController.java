@@ -29,7 +29,12 @@ public class CircuitoController {
 		 
 	}
 	
-	
+	@GetMapping("/circuitos_views")
+	public String CircuitosViews(Model model) {
+		model.addAttribute("circuitos",circuitoService.getAllCircuitos());		
+		return "views_circuitos/circuitos_views";
+		 
+	}
 	
 	@GetMapping("/circuitos/crear")
 	public String createCircuitoForm(Model model) {
