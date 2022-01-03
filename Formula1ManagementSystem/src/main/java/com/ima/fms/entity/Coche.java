@@ -13,7 +13,7 @@ public class Coche {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long CocheId;
 	
 	@Column(name= "nombre", nullable=false)
 	private String nombre;
@@ -71,11 +71,11 @@ public class Coche {
 	public void setConsumo(float consumo) {
 		Consumo = consumo;
 	}
-	public Long getId() {
-		return id;
+	public Long getCocheId() {
+		return CocheId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setCocheId(Long i) {
+		this.CocheId = i;
 	}
 	
 	

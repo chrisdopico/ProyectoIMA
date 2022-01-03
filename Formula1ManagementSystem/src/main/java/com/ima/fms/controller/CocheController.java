@@ -60,7 +60,7 @@ public class CocheController {
 	public String updateCoche(@PathVariable Long id, @ModelAttribute("coche") Coche coche, Model model) {
 
 		Coche cocheExistente = cocheService.getCocheById(id);
-		cocheExistente.setId(id);
+		cocheExistente.setCocheId(id);
 		cocheExistente.setNombre(coche.getNombre());
 		cocheExistente.setERS_CurvaLenta(coche.getERS_CurvaLenta());
 		cocheExistente.setERS_CurvaMedia(coche.getERS_CurvaMedia());
