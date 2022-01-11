@@ -25,7 +25,7 @@ public class CocheController {
 	@GetMapping("/coches")
 	public String listCoches(Model model) {
 		model.addAttribute("coches",cocheService.getAllCoches());
-		return "viewCoches/coches";
+		return "views_coches/coches";
 		 
 	}
 	
@@ -64,7 +64,7 @@ public class CocheController {
 		cocheExistente.setNombre(coche.getNombre());
 		cocheExistente.setERS_CurvaLenta(coche.getERS_CurvaLenta());
 		cocheExistente.setERS_CurvaMedia(coche.getERS_CurvaMedia());
-		cocheExistente.setERS_CurvaRápida(coche.getERS_CurvaRápida());
+		cocheExistente.setERS_CurvaRapida(coche.getERS_CurvaRapida());
 		cocheExistente.setConsumo(coche.getConsumo());
 		
 		

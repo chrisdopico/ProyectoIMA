@@ -78,7 +78,7 @@ public class SimulacionController {
 	public String calculoERS(@RequestParam("tipoConductor") String tipoConductor,@ModelAttribute("cocheSeleccionado") Coche coche,@ModelAttribute("circuitoSeleccionado") Circuito circuito, Model model) {
 		Coche cocheEscogido = cocheService.getCocheById(coche.getCocheId());
 		Circuito circuitoEscogido = circuitoService.getCircuitoById(circuito.getId());
-		float totalEnergia=(cocheEscogido.getERS_CurvaLenta()*circuitoEscogido.getCurvas_lentas())+(cocheEscogido.getERS_CurvaMedia()*circuitoEscogido.getCurvas_medias())+(cocheEscogido.getERS_CurvaRápida()*circuitoEscogido.getCurvas_rapidas());
+		float totalEnergia=(cocheEscogido.getERS_CurvaLenta()*circuitoEscogido.getCurvas_lentas())+(cocheEscogido.getERS_CurvaMedia()*circuitoEscogido.getCurvas_medias())+(cocheEscogido.getERS_CurvaRapida()*circuitoEscogido.getCurvas_rapidas());
 		float totalAlmacenadoPorVuelta=0f;
 		float totalVueltasParaCargarBateria=0f;
 		if(totalEnergia>0.6f) {

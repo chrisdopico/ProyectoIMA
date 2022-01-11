@@ -21,8 +21,8 @@ public class Coche {
 	private float ERS_CurvaLenta;
 	@Column(name= "ERS_CurvaMedia", nullable=false)
 	private float ERS_CurvaMedia;
-	@Column(name= "ERS_CurvaRápida", nullable=false)
-	private float ERS_CurvaRápida;
+	@Column(name= "ERS_CurvaRapida", nullable=false)
+	private float ERS_CurvaRapida;
 	@Column(name= "Consumo", nullable=false)
 	private float Consumo;
 	
@@ -32,13 +32,13 @@ public class Coche {
 	}
 	
 	
-	public Coche(String nombre, float eRS_CurvaLenta, float eRS_CurvaMedia, float eRS_CurvaRápida,
+	public Coche(String nombre, float eRS_CurvaLenta, float eRS_CurvaMedia, float eRS_CurvaRapida,
 			float consumo) {
 		super();
 		this.nombre = nombre;
 		this.ERS_CurvaLenta = eRS_CurvaLenta;
 		this.ERS_CurvaMedia = eRS_CurvaMedia;
-		this.ERS_CurvaRápida = eRS_CurvaRápida;
+		this.ERS_CurvaRapida = eRS_CurvaRapida;
 		this.Consumo = consumo;
 	}
 	public String getNombre() {
@@ -59,11 +59,11 @@ public class Coche {
 	public void setERS_CurvaMedia(float eRS_CurvaMedia) {
 		ERS_CurvaMedia = eRS_CurvaMedia;
 	}
-	public float getERS_CurvaRápida() {
-		return ERS_CurvaRápida;
+	public float getERS_CurvaRapida() {
+		return ERS_CurvaRapida;
 	}
-	public void setERS_CurvaRápida(float eRS_CurvaRápida) {
-		ERS_CurvaRápida = eRS_CurvaRápida;
+	public void setERS_CurvaRapida(float eRS_CurvaRapida) {
+		ERS_CurvaRapida = eRS_CurvaRapida;
 	}
 	public float getConsumo() {
 		return Consumo;
