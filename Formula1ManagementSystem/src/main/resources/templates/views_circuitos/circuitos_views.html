@@ -38,7 +38,6 @@
 						<a class="nav-link" th:href="@{/all_escuderias}">Escuderías</a>
 						<a class="nav-link" th:href="@{/circuitos_views}">Circuitos</a>
 						<a class="nav-link" th:href="@{/responsable}">Responsable</a>
-	<!--					<a class="nav-link" th:href="@{/responsable/{id}(id=${usuario.id})}">Responsable</a>-->
 						<a class="nav-link" th:href="@{/administrar}">Administrar</a>
 					</div>
 				</div>
@@ -47,17 +46,36 @@
 	</div><br>
 	<div class="container">
 		<div class="row">
-			<div class="col-xl-3" th:each="noticia:${noticias}">
-				<div class="card" style="width: 15rem;">
-					<img class="card-img-top" th:src="${noticia.imagen}" alt="Card image cap">
-					<div class="card-body">
-						<p class="card-title" th:text="${noticia.titulo}"></p>
-						<hr>
-						<a th:href="@{/leer/{id}(id=${noticia.id})}" class="btn btn-primary">Leer Noticia</a>
-					</div>
-				</div>
-				<hr>
-			</div>
+			<table class="table table-striped table bordered">
+			<thead class="table-dark">
+				<tr>
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Ciudad</th>
+					<th>País</th>
+					<th>Longitud</th>
+					<th>Número de vueltas</th>
+					<th>Curvas lentas</th>
+					<th>Curvas medias</th>
+					<th>Curvas rápidas</th>
+					<th>Trazado</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="circuito: ${circuitos}">
+					<td th:text="${circuito.id}"></td>
+					<td th:text="${circuito.nombre}"></td>
+					<td th:text="${circuito.ciudad}"></td>
+					<td th:text="${circuito.pais}"></td>
+					<td th:text="${circuito.longitud}"></td>
+					<td th:text="${circuito.numero_de_vueltas}"></td>
+					<td th:text="${circuito.curvas_lentas}"></td>
+					<td th:text="${circuito.curvas_medias}"></td>
+					<td th:text="${circuito.curvas_rapidas}"></td>
+					<td th:text="${circuito.trazado}"></td>
+				</tr>
+			</tbody>
+		</table>
 		</div>
 	</div>
 </body>

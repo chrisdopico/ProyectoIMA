@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.ima.fms.entity.Escuderia;
+import com.ima.fms.entity.Piloto;
 import com.ima.fms.entity.User;
+import com.ima.fms.service.PilotoService;
 import com.ima.fms.service.UserService;
 
 @Controller
@@ -41,9 +43,9 @@ public class UserController {
 		List<User> usuarios2 = userService.getAllUsers();
 
 		int a = usuarios2.size();
-		
-		while(a != 0) {
-			usuarios2.remove(a-1);
+
+		while (a != 0) {
+			usuarios2.remove(a - 1);
 			a--;
 		}
 
@@ -64,6 +66,12 @@ public class UserController {
 							&& (usuarios.get(i).getRoles().toString().equals("[Corresponsable]"))
 							&& (usuarios.get(i).getEscuderia().equals(escuderia)))) {
 				usuarios2.add(user);
+<<<<<<< HEAD
+
+			//	System.out.println("BBBBBBBBBBBBBBBBBBBBB" + usuarios2.get(i).getName());s
+
+=======
+>>>>>>> 82cf06cad08d43e93e018872c56e308003c3ca83
 			}
 
 		}
@@ -113,13 +121,13 @@ public class UserController {
 	// Handler method para delete
 	@GetMapping("/usuarios/{id}")
 	public String deleteUser(@PathVariable Long id) {
-		if (userService.getRoles() == null) {
-			userService.deleteUserById(id);
-		} else {
-			userService.getUserById(id).setEscuderia(null);
-			userService.getUserById(id).setRoles(null);
-			userService.deleteUserById(id);
-		}
+			if (userService.getRoles() == null) {
+				userService.deleteUserById(id);
+			} else {
+				userService.getUserById(id).setEscuderia(null);
+				userService.getUserById(id).setRoles(null);
+				userService.deleteUserById(id);
+			}
 		return "redirect:/usuarios";
 	}
 
