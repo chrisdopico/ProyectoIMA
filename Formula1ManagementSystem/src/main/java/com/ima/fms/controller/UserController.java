@@ -66,6 +66,10 @@ public class UserController {
 							&& (usuarios.get(i).getRoles().toString().equals("[Corresponsable]"))
 							&& (usuarios.get(i).getEscuderia().equals(escuderia)))) {
 				usuarios2.add(user);
+<<<<<<< HEAD
+			//	System.out.println("BBBBBBBBBBBBBBBBBBBBB" + usuarios2.get(i).getName());s
+=======
+>>>>>>> juancarlos-branch
 			}
 
 		}
@@ -74,7 +78,7 @@ public class UserController {
 		return "views_miembros/miembros";
 	}
 
-	// Método Get Para escuderias
+	// Método Get Para escuderias.
 	@GetMapping("/escuderias")
 	public String listEscuderias(@AuthenticationPrincipal Authentication auth, Model model) {
 

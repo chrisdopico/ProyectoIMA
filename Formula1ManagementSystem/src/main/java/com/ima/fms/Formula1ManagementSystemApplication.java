@@ -9,5 +9,6 @@ public class Formula1ManagementSystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Formula1ManagementSystemApplication.class, args);
 	}
+	
 
 }
