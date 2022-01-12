@@ -66,12 +66,7 @@ public class UserController {
 							&& (usuarios.get(i).getRoles().toString().equals("[Corresponsable]"))
 							&& (usuarios.get(i).getEscuderia().equals(escuderia)))) {
 				usuarios2.add(user);
-<<<<<<< HEAD
 
-			//	System.out.println("BBBBBBBBBBBBBBBBBBBBB" + usuarios2.get(i).getName());s
-
-=======
->>>>>>> 82cf06cad08d43e93e018872c56e308003c3ca83
 			}
 
 		}
