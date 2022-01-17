@@ -80,6 +80,7 @@
 			<thead class="table-dark">
 				<tr>
 					<th>Nombre</th>
+					<th>Codigo</th>
 					<th>ERS Curva Lenta</th>
 					<th>ERS Curva Media</th>
 					<th>Ers Curva Rápida</th>
@@ -90,10 +91,11 @@
 			<tbody>
 				<tr th:each="coche: ${coches}">
 					<td th:text="${coche.nombre}"></td>
+					<td th:text="${coche.codigo}"></td>
 					<td th:text="${coche.eRS_CurvaLenta}"></td>
-		          <td th:text="${coche.eRS_CurvaMedia}"></td>
-		          <td th:text="${coche.eRS_CurvaRapida}"></td>
-		          <td th:text="${coche.Consumo}"></td>
+		            <td th:text="${coche.eRS_CurvaMedia}"></td>
+		            <td th:text="${coche.eRS_CurvaRapida}"></td>
+		            <td th:text="${coche.Consumo}"></td>
 					
 					<td>
 						<a th:href="@{/coches/edit/{id}(id=${coche.CocheId})}" class="btn btn-primary">Editar</a>

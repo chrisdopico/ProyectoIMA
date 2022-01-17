@@ -35,7 +35,7 @@ public class CocheController {
 	public String createCocheForm(Model model) {
 		Coche coche= new Coche();
 		model.addAttribute("coche",coche);
-		return "viewCoches/create_coche";
+		return "views_coches/create_coche";
 	}
 	
 	
@@ -51,7 +51,7 @@ public class CocheController {
 	@GetMapping("/coches/edit/{id}")
 	public String editCochesForm(@PathVariable Long id,Model model) {
 		model.addAttribute("coche",cocheService.getCocheById(id));
-		return "viewCoches/edit_coche";
+		return "views_coches/edit_coche";
 	}  
 	
 
@@ -78,7 +78,7 @@ public class CocheController {
 	@GetMapping("/coches/{id}")
 	public String deleteCoche(@PathVariable Long id) {
 		cocheService.deleteCocheById(id);
-		return "redirect:/coche";
+		return "redirect:/coches";
 	}
 	
 	
