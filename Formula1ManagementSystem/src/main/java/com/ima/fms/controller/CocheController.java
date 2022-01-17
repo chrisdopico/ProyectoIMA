@@ -62,6 +62,7 @@ public class CocheController {
 		Coche cocheExistente = cocheService.getCocheById(id);
 		cocheExistente.setCocheId(id);
 		cocheExistente.setNombre(coche.getNombre());
+		cocheExistente.setCodigo(coche.getCodigo());
 		cocheExistente.setERS_CurvaLenta(coche.getERS_CurvaLenta());
 		cocheExistente.setERS_CurvaMedia(coche.getERS_CurvaMedia());
 		cocheExistente.setERS_CurvaRapida(coche.getERS_CurvaRapida());

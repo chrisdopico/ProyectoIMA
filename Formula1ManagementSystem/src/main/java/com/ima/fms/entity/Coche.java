@@ -17,6 +17,8 @@ public class Coche {
 	
 	@Column(name= "nombre", nullable=false)
 	private String nombre;
+	@Column(name= "codigo", nullable=false)
+	private String codigo;
 	@Column(name= "ERS_CurvaLenta", nullable=false)
 	private float ERS_CurvaLenta;
 	@Column(name= "ERS_CurvaMedia", nullable=false)
@@ -32,15 +34,26 @@ public class Coche {
 	}
 	
 	
-	public Coche(String nombre, float eRS_CurvaLenta, float eRS_CurvaMedia, float eRS_CurvaRapida,
+	public Coche(String nombre,String codigo, float eRS_CurvaLenta, float eRS_CurvaMedia, float eRS_CurvaRapida,
 			float consumo) {
 		super();
 		this.nombre = nombre;
+		this.codigo=codigo;
 		this.ERS_CurvaLenta = eRS_CurvaLenta;
 		this.ERS_CurvaMedia = eRS_CurvaMedia;
 		this.ERS_CurvaRapida = eRS_CurvaRapida;
 		this.Consumo = consumo;
 	}
+	public String getCodigo() {
+		return codigo;
+	}
+
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+
 	public String getNombre() {
 		return nombre;
 	}
