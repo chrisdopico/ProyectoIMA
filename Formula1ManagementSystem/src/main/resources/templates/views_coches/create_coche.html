@@ -55,68 +55,52 @@
 	</nav>
 	<div class="container-fluid">
 		<div>
-			<a th:href="@{/usuarios}" class="btn btn-primary">Usuarios</a>
-			<a th:href="@{/noticias}" class="btn btn-primary">Noticias</a>
-			<a th:href="@{/administrar}" class="btn btn-primary">Votaciones</a>
-			<a th:href="@{/calendarios_admin}" class="btn btn-primary">Calendario</a>
-			<a th:href="@{/escuderias_admin}" class="btn btn-primary">Escuderías</a>
-			<a th:href="@{/circuitos}" class="btn btn-primary">Circuitos</a>
+			<a th:href="@{/miembros}" class="btn btn-primary">Miembros</a>
+			<a th:href="@{/escuderias}" class="btn btn-primary">Equipos</a>
+			<a th:href="@{/pilotos}" class="btn btn-primary">Pilotos</a>
+			<a th:href="@{/coches}" class="btn btn-primary">Coches</a>
 			<a th:href="@{/simulacion}" class="btn btn-primary">Herramientas de Simulación</a>
-		</div>
+			</div>
 	</div>
 	<hr>
 
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-				<h1>Crear Nuevo Circuito</h1>
+				<h1>Editar coche</h1>
 				<div class="card-body">
-					<form th:action="@{/circuitos}" th:object="${circuito}" method="POST">
+					<form th:action="@{/coches}" th:object="${coche}" method="POST">
 						<div class="form-group">
-							<label>Nombre de Circuito</label>
+							<label>Nombre del coche</label>
 							<input type="text" name"nombre" th:field="*{nombre}"
-								placeholder="Nombre de Circuito" class="form-control" required>
+								placeholder="Ingresar el nombre del coche" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Ciudad de Circuito</label>
-							<input type="text" name"ciudad" th:field="*{ciudad}"
-								placeholder="Ciudad de Circuito" class="form-control" required>
+							<label>Codigo</label>
+							<input type="text" name"codigo" th:field="*{codigo}"
+								placeholder="Ingresar el codigo del coche" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>País de Circuito</label>
-							<input type="text" name"pais" th:field="*{pais}"
-								placeholder="País de Circuito" class="form-control" required>
+							<label>ERS Curva Lenta</label>
+							<input type="text" name"ers_curva_lenta" th:field="*{eRS_CurvaLenta}"
+								placeholder="Ingresar ERS en curva lenta" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Longitud de Circuito</label>
-							<input type="number" min="0" name"longitud" th:field="*{longitud}"
-								placeholder="Longitud de Circuito" class="form-control" required>
+							<label>ERS Curva Media</label>
+							<input type="text" name"ers_curva_media" th:field="*{eRS_CurvaMedia}"
+								placeholder="Ingresar ERS en curva media" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Número de vueltas del Circuito</label>
-							<input type="number" min="0" step="1" name"vueltas" th:field="*{numero_de_vueltas}"
-								placeholder="Número de vueltas del Circuito" class="form-control" required>
+							<label>ERS Curva Rapida</label>
+							<input type="text" name"ers_curva_rapida" th:field="*{eRS_CurvaRapida}"
+								placeholder="Ingresar ERS en curva rapida" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Número de curvas lentas del Circuito</label>
-							<input type="number" min="0" step="1" name"curvaslentas" th:field="*{curvas_lentas}"
-								placeholder="Número de curvas lentas del Circuito" class="form-control" required>
+							<label>Consumo</label>
+							<input type="text" name"consumo" th:field="*{consumo}"
+								placeholder="Ingresar el consumo del coche" class="form-control" required>
 						</div>
-						<div class="form-group">
-							<label>Número de curvas medias del Circuito</label>
-							<input type="number" min="0" step="1" name"curvasmedias" th:field="*{curvas_medias}"
-								placeholder="Número de curvas medias del Circuito" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Número de curvas rápidas del Circuito</label>
-							<input type="number" min="0" step="1" name"curvasrapidas" th:field="*{curvas_rapidas}"
-								placeholder="Número de curvas rápidas del Circuito" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Trazado de Circuito</label>
-							<input type="text" name"trazado" th:field="*{trazado}"
-								placeholder="Trazado de Circuito" class="form-control" required>
-						</div>
+						
 						<br>
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary">

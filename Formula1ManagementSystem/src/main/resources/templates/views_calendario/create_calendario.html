@@ -69,58 +69,40 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-				<h1>Crear Nuevo Circuito</h1>
+				<h1>Crear nuevo Evento</h1>
 				<div class="card-body">
-					<form th:action="@{/circuitos}" th:object="${circuito}" method="POST">
+					<form th:action="@{/save_evento}" th:object="${calendario}" method="POST" id="circuitoForm">
 						<div class="form-group">
-							<label>Nombre de Circuito</label>
+							<label>Título del Evento</label>
 							<input type="text" name"nombre" th:field="*{nombre}"
-								placeholder="Nombre de Circuito" class="form-control" required>
+								placeholder="Ingresar Título del evento" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Ciudad de Circuito</label>
+							<label>País del Evento</label>
+							<input type="text" name"pais" th:field="*{pais}" placeholder="Ingresar País del evento"
+								class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Ciudad del Evento</label>
 							<input type="text" name"ciudad" th:field="*{ciudad}"
-								placeholder="Ciudad de Circuito" class="form-control" required>
+								placeholder="Ingresar ciudad del evento" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>País de Circuito</label>
-							<input type="text" name"pais" th:field="*{pais}"
-								placeholder="País de Circuito" class="form-control" required>
+							<label>Fecha del Evento</label>
+							<input type="date" name"fecha" th:field="*{fecha}" class="form-control" required>
 						</div>
+						<br>
 						<div class="form-group">
-							<label>Longitud de Circuito</label>
-							<input type="number" min="0" name"longitud" th:field="*{longitud}"
-								placeholder="Longitud de Circuito" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Número de vueltas del Circuito</label>
-							<input type="number" min="0" step="1" name"vueltas" th:field="*{numero_de_vueltas}"
-								placeholder="Número de vueltas del Circuito" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Número de curvas lentas del Circuito</label>
-							<input type="number" min="0" step="1" name"curvaslentas" th:field="*{curvas_lentas}"
-								placeholder="Número de curvas lentas del Circuito" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Número de curvas medias del Circuito</label>
-							<input type="number" min="0" step="1" name"curvasmedias" th:field="*{curvas_medias}"
-								placeholder="Número de curvas medias del Circuito" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Número de curvas rápidas del Circuito</label>
-							<input type="number" min="0" step="1" name"curvasrapidas" th:field="*{curvas_rapidas}"
-								placeholder="Número de curvas rápidas del Circuito" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Trazado de Circuito</label>
-							<input type="text" name"trazado" th:field="*{trazado}"
-								placeholder="Trazado de Circuito" class="form-control" required>
+							<label>Circuito</label>
+							<select name="id" th:object="${circuito}" form="circuitoForm">
+								<option th:each="circuito: ${circuitosList}" th:value="${circuito.id}"
+									th:text="${circuito.nombre}" th:selected="true" required />
+							</select>
 						</div>
 						<br>
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary">
-								Guardar
+								Crear
 							</button>
 						</div>
 					</form>

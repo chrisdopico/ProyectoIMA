@@ -182,6 +182,7 @@ public class UserController {
 		User user = userService.getUserById(id);
 		user.setEscuderia(escuderia);
 		user.setName_escu(escuderia.getNombre());
+		user.setEnabled(true);
 
 		userService.updateUser(user);
 		return "redirect:/miembros";
@@ -193,6 +194,7 @@ public class UserController {
 		User user = userService.getUserById(id);
 		user.setEscuderia(null);
 		user.setName_escu(null);
+		user.setEnabled(false);
 		userService.updateUser(user);
 		return "redirect:/miembros";
 	}

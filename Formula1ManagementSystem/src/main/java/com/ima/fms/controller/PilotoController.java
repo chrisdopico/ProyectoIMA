@@ -141,6 +141,7 @@ public class PilotoController {
 
 	@GetMapping("/pilotos/{id}")
 	public String deletePiloto(@PathVariable Long id) {
+		pilotoService.getPilotoById(id).setEscuderia(null);
 		pilotoService.deletePilotoById(id);
 		return "redirect:/pilotos";
 	}
