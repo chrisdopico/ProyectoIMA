@@ -42,7 +42,7 @@
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
 					<a class="nav-link active" aria-current="page" th:href="@{/}">Noticias</a>
-					<a class="nav-link" href="http://www.google.com">Calendario</a>
+					<a class="nav-link" th:href="@{/calendarios}">Calendario</a>
 					<a class="nav-link" href="http://www.google.com">Votaciones</a>
 					<a class="nav-link" th:href="@{/all_escuderias}">Escuderías</a>
 					<a class="nav-link" th:href="@{/circuitos_views}">Circuitos</a>
@@ -54,12 +54,11 @@
 	</nav>
 	<div class="container-fluid">
 		<div>
-			<a th:href="@{/responsable}" class="btn btn-primary">Miembros</a>
+			<a th:href="@{/miembros}" class="btn btn-primary">Miembros</a>
 			<a th:href="@{/escuderias}" class="btn btn-primary">Equipos</a>
 			<a th:href="@{/pilotos}" class="btn btn-primary">Pilotos</a>
-<!--			<a th:href="@{/pilotos(id=${escuderia.id})}" class="btn btn-primary">Pilotos</a>-->
-			<a th:href="@{/responsable}" class="btn btn-primary">Coches</a>
-			<a th:href="@{/responsable}" class="btn btn-primary">Herramientas de Simulación</a>
+			<a th:href="@{/coches}" class="btn btn-primary">Coches</a>
+			<a th:href="@{/simulacion}" class="btn btn-primary">Herramientas de Simulación</a>
 			</div>
 	</div>
 	<br>

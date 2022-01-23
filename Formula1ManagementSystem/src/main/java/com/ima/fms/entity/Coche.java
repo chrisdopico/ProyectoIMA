@@ -1,11 +1,16 @@
 package com.ima.fms.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Table(name="t_coches")
@@ -28,6 +33,12 @@ public class Coche {
 	@Column(name= "Consumo", nullable=false)
 	private float Consumo;
 	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+	@JoinTable(name = "coches_escuderia", joinColumns = @JoinColumn(name = "coche_id", referencedColumnName = "CocheId"), inverseJoinColumns = @JoinColumn(name = "escuderia_id", referencedColumnName = "id"))
+
+	Escuderia escuderia;
+	
 	
 	public Coche () {
 		
@@ -35,7 +46,7 @@ public class Coche {
 	
 	
 	public Coche(String nombre,String codigo, float eRS_CurvaLenta, float eRS_CurvaMedia, float eRS_CurvaRapida,
-			float consumo) {
+			float consumo, Escuderia escuderia) {
 		super();
 		this.nombre = nombre;
 		this.codigo=codigo;
@@ -43,6 +54,7 @@ public class Coche {
 		this.ERS_CurvaMedia = eRS_CurvaMedia;
 		this.ERS_CurvaRapida = eRS_CurvaRapida;
 		this.Consumo = consumo;
+		this.escuderia = escuderia;
 	}
 	public String getCodigo() {
 		return codigo;
@@ -90,10 +102,15 @@ public class Coche {
 	public void setCocheId(Long i) {
 		this.CocheId = i;
 	}
-	
-	
-	
-	
-	
+
+
+	public Escuderia getEscuderia() {
+		return escuderia;
+	}
+
+
+	public void setEscuderia(Escuderia escuderia) {
+		this.escuderia = escuderia;
+	}
 	
 }

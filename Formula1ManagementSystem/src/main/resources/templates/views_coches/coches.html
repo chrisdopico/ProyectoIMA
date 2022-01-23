@@ -43,10 +43,10 @@
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
 					<a class="nav-link active" aria-current="page" th:href="@{/}">Noticias</a>
-					<a class="nav-link" href="http://www.google.com">Calendario</a>
+					<a class="nav-link" th:href="@{/calendarios}">Calendario</a>
 					<a class="nav-link" href="http://www.google.com">Votaciones</a>
 					<a class="nav-link" th:href="@{/all_escuderias}">Escuderías</a>
-					<a class="nav-link" href="http://www.google.com">Circuitos</a>
+					<a class="nav-link" th:href="@{/circuitos_views}">Circuitos</a>
 					<a class="nav-link" th:href="@{/responsable}">Responsable</a>
 					<a class="nav-link" th:href="@{/administrar}">Administrar</a>
 				</div>
@@ -55,12 +55,11 @@
 	</nav>
 	<div class="container-fluid">
 		<div>
-			<a th:href="@{/usuarios}" class="btn btn-primary">Usuarios</a>
-			<a th:href="@{/noticias}" class="btn btn-primary">Noticias</a>
-			<a th:href="@{/administrar}" class="btn btn-primary">Votaciones</a>
-			<a th:href="@{/administrar}" class="btn btn-primary">Calendario</a>
-			<a th:href="@{/administrar}" class="btn btn-primary">Equipos</a>
-			<a th:href="@{/circuitos}" class="btn btn-primary">Circuitos</a>
+			<a th:href="@{/miembros}" class="btn btn-primary">Miembros</a>
+			<a th:href="@{/escuderias}" class="btn btn-primary">Equipos</a>
+			<a th:href="@{/pilotos}" class="btn btn-primary">Pilotos</a>
+			<a th:href="@{/coches}" class="btn btn-primary">Coches</a>
+			<a th:href="@{/simulacion}" class="btn btn-primary">Herramientas de Simulación</a>
 		</div>
 	</div>
 	<hr>
@@ -79,17 +78,19 @@
 		<table class="table table-striped table bordered">
 			<thead class="table-dark">
 				<tr>
+					<th>Id</th>
 					<th>Nombre</th>
 					<th>Codigo</th>
 					<th>ERS Curva Lenta</th>
 					<th>ERS Curva Media</th>
 					<th>Ers Curva Rápida</th>
-			          <th>Ers Curva Rápida</th>
-			          <th>Consumo</th>
+			        <th>Consumo</th>
+			        <th>Acción</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="coche: ${coches}">
+					<td th:text="${coche.CocheId}"></td>
 					<td th:text="${coche.nombre}"></td>
 					<td th:text="${coche.codigo}"></td>
 					<td th:text="${coche.eRS_CurvaLenta}"></td>

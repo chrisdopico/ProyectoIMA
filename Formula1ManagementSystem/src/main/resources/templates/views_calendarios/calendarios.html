@@ -59,12 +59,18 @@
 				<tr>
 					<th>Evento</th>
 					<th>Fecha</th>
+					<th>País</th>
+					<th>Ciudad</th>
+					<th>Circuito</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="Eventos: ${eventos}">
-					<td th:text="${eventos.evento}"></td>
-					<td th:text="${eventos.fecha}"></td>
+				<tr th:each="calendario: ${calendarios}">
+					<td th:text="${calendario.nombre}"></td>
+					<td th:text="${calendario.fecha}"></td>
+					<td th:text="${calendario.pais}"></td>
+					<td th:text="${calendario.ciudad}"></td>
+					<td th:text="${calendario.nombre_circuito}"></td>
 				</tr>
 
 			</tbody>

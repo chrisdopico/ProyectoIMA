@@ -22,17 +22,27 @@ public class Escuderia {
 	private String logo;
 	@Column(name = "twitter")
 	private String twitter;
-
-
+	@Column(name = "nombre_responsable")
+	private String nombre_responsable;
+	
 	public Escuderia() {
 
 	}
 
-	public Escuderia(String nombre, String logo, String twitter) {
+	public Escuderia(String nombre, String logo, String twitter, String nombre_responsable) {
 		super();
 		this.nombre = nombre;
 		this.logo = logo;
 		this.twitter = twitter;
+		this.nombre_responsable = nombre_responsable;
+	}
+
+	public String getNombre_responsable() {
+		return nombre_responsable;
+	}
+
+	public void setNombre_responsable(String nombre_responsable) {
+		this.nombre_responsable = nombre_responsable;
 	}
 
 	public Long getId() {

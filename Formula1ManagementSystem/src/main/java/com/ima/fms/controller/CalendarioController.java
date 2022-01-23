@@ -7,17 +7,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ima.fms.entity.Calendario;
+import com.ima.fms.entity.Circuito;
 import com.ima.fms.service.CalendarioService;
+import com.ima.fms.service.CircuitoService;
+
 import org.springframework.ui.Model;
 
 @Controller
 public class CalendarioController {
 	
 	private CalendarioService calendarioService;
+	private CircuitoService circuitoService;
 
-	public CalendarioController(CalendarioService calendarioService) {
+	public CalendarioController(CalendarioService calendarioService, CircuitoService circuitoService) {
 		super();
 		this.calendarioService = calendarioService;
+		this.circuitoService = circuitoService;
 	}
 	
 	
@@ -25,7 +30,14 @@ public class CalendarioController {
 	@GetMapping("/calendarios")
 	public String listCalendarios(Model model) {
 		model.addAttribute("calendarios",calendarioService.getAllCalendarios());		
-		return "views_calendarios/calendarios";
+		return "views_calendario/calendarios";
+		 
+	}
+	
+	@GetMapping("/calendarios_admin")
+	public String listCalendariosAdmin(Model model) {
+		model.addAttribute("calendarios",calendarioService.getAllCalendarios());		
+		return "views_calendario/calendarios_admin";
 		 
 	}
 	
@@ -33,24 +45,26 @@ public class CalendarioController {
 	@GetMapping("/calendarios/crear")
 	public String createCalendarioForm(Model model) {
 		Calendario calendario= new Calendario();
+		model.addAttribute("circuitosList", circuitoService.getAllCircuitos());
 		model.addAttribute("calendario",calendario);
-		return "views_calendarios/create_calendario";
+		return "views_calendario/create_calendario";
 	}
 	
 	
-
-	
-	@PostMapping("/calendarios")
-	public String saveCalendario(@ModelAttribute("calendario") Calendario calendario) {
+	@PostMapping("/save_evento")
+	public String saveCalendario(@ModelAttribute("calendario") Calendario calendario, @ModelAttribute("circuito") Circuito circuito) {
+		Circuito circuito_2 = circuitoService.getCircuitoById(circuito.getId());
+		calendario.setCircuito(circuito_2);
+		calendario.setNombre_circuito(circuito_2.getNombre());
 		calendarioService.saveCalendario(calendario);
-		return "redirect:/calendarios";
+		return "redirect:/calendarios_admin";
 	}
 	
 	
 	@GetMapping("/calendarios/edit/{id}")
 	public String editCalendariosForm(@PathVariable Long id,Model model) {
 		model.addAttribute("calendario",calendarioService.getCalendarioById(id));
-		return "views_calendarios/edit_calendario";
+		return "views_calendario/edit_calendario";
 	}  
 	
 

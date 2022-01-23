@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ima.fms.entity.Escuderia;
 import com.ima.fms.entity.Piloto;
 import com.ima.fms.entity.User;
+import com.ima.fms.repository.EscuderiaRepository;
 import com.ima.fms.repository.PilotoRepository;
 import com.ima.fms.repository.UserRepository;
 import com.ima.fms.service.PilotoService;
@@ -18,36 +19,19 @@ import com.ima.fms.service.UserService;
 public class PilotoServiceImplementation implements PilotoService{
 		
 	private PilotoRepository  pilotoRepository;
+	private UserRepository  userRepository;
 	
 	
-	public PilotoServiceImplementation(PilotoRepository pilotoRepository) {
+	public PilotoServiceImplementation(PilotoRepository pilotoRepository, UserRepository  userRepository) {
 		super();
 		this.pilotoRepository = pilotoRepository;
+		this.userRepository = userRepository;
 	}
 
 
 	@Override
 	public List<Piloto> getAllPilotos(){
 		return pilotoRepository.findAll();
-	}
-	
-	public List<Piloto> getPilotosByTeam(Long id){
-		List<Piloto> pilotos = pilotoRepository.findAll();
-		List<Piloto> pilotos2 = pilotoRepository.findAll();
-		
-		int a = pilotos.size();
-
-		while (a != 0) {
-			pilotos2.remove(a - 1);
-			a--;
-		}
-		
-		for(int i = 0; i <= pilotos.size(); i++) {
-			if(pilotos.get(i).getEscuderia().getId() == id) {
-				pilotos2.add(pilotos.get(i));
-			}
-		}
-		return pilotos2;
 	}
 	
 	@Override

@@ -1,10 +1,17 @@
 package com.ima.fms.entity;
 
+import java.sql.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,18 +32,30 @@ public class Calendario {
 	private String ciudad;
 	
 	@Column(name= "fecha", nullable=false)
-	private String fecha;
+	private Date fecha;
+	
+	@Column(name= "nombre_circuito", nullable=true)
+	private String nombre_circuito;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+	@JoinTable(name = "evento_circuito", joinColumns = @JoinColumn(name = "id_calendario", referencedColumnName = "idCalendario"), inverseJoinColumns = @JoinColumn(name = "id_circuito", referencedColumnName = "id"))
+
+	Circuito circuito;
+	
 
 	public Calendario() {
 		
 	}
 	
-	public Calendario(String nombre, String pais, String ciudad, String fecha) {
+	public Calendario(String nombre, String pais, String ciudad, Date fecha, String nombre_circuito, Circuito circuito) {
 		super();
 		this.nombre = nombre;
 		this.pais = pais;
 		this.ciudad = ciudad;
 		this.fecha = fecha;
+		this.circuito = circuito;
+		this.nombre_circuito = nombre_circuito;
 	}
 	
 	
@@ -73,14 +92,29 @@ public class Calendario {
 		this.ciudad = ciudad;
 	}
 
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(String fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	
+
+	public Circuito getCircuito() {
+		return circuito;
+	}
+
+	public void setCircuito(Circuito circuito) {
+		this.circuito = circuito;
+	}
+
+	public String getNombre_circuito() {
+		return nombre_circuito;
+	}
+
+	public void setNombre_circuito(String nombre_circuito) {
+		this.nombre_circuito = nombre_circuito;
+	}
 	
 	
 }

@@ -8,10 +8,6 @@ public interface PilotoService {
 	
 	List<Piloto> getAllPilotos();
 	
-	List<Piloto> getPilotosByTeam(Long id);
-	
-//	Escuderia getEscuderiaByNameUser(String name);
-	
 	Piloto savePilotos(Piloto piloto);
 	
 	Piloto getPilotoById(Long id);

@@ -1,5 +1,8 @@
 package com.ima.fms.controller;
 
+import java.util.List;
+
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -7,24 +10,86 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ima.fms.entity.Coche;
+import com.ima.fms.entity.Escuderia;
+import com.ima.fms.entity.Piloto;
+import com.ima.fms.entity.User;
 import com.ima.fms.service.CocheService;
+import com.ima.fms.service.EscuderiaService;
+import com.ima.fms.service.UserService;
+
 import org.springframework.ui.Model;
 
 @Controller
 public class CocheController {
 	
 	private CocheService cocheService;
+	private EscuderiaService escuderiaService;
+	private UserService userService;
 
-	public CocheController(CocheService cocheService) {
+	public CocheController(CocheService cocheService, EscuderiaService escuderiaService, UserService userService) {
 		super();
 		this.cocheService = cocheService;
+		this.escuderiaService = escuderiaService;
+		this.userService = userService;
 	}
 	
+	@GetMapping("/all_coches_escu/{id}")
+	public String listPilotosUser(@PathVariable Long id, Model model) {
+		
+		List<Coche> coches = cocheService.getAllCoches();
+		List<Coche> coches_2 = cocheService.getAllCoches();
+		Escuderia escuderia = escuderiaService.getEscuderiaById(id);
+		
+		int a = coches_2.size();
+		
+		while (a != 0) {
+			coches_2.remove(a - 1);
+			a--;
+		}
+		
+		for(int i = 0; i < coches.size(); i++) {
+			if(coches.get(i).getEscuderia().getNombre().equals(escuderia.getNombre())) {
+				coches_2.add(coches.get(i));
+			}
+		}
+		
+		model.addAttribute("coches", coches_2);
+		
+		return "views_coches/coches_escuderia";
+
+	}
 	
 	
 	@GetMapping("/coches")
 	public String listCoches(Model model) {
-		model.addAttribute("coches",cocheService.getAllCoches());
+		
+		List<Coche> coches = cocheService.getAllCoches();
+		List<Coche> coches_2 = cocheService.getAllCoches();
+		List<User> usuarios = userService.getAllUsers();
+		Escuderia escuderia = null;
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		int a = coches_2.size();
+		
+		while (a != 0) {
+			coches_2.remove(a - 1);
+			a--;
+		}
+		
+		for(int i = 0; i < usuarios.size(); i++) {
+			if(usuarios.get(i).getEmail().equals(username)) {
+				escuderia = usuarios.get(i).getEscuderia();
+			}
+		}
+		
+		for(int i = 0; i < coches.size(); i++) {
+			if(coches.get(i).getEscuderia().getNombre().equals(escuderia.getNombre())) {
+				coches_2.add(coches.get(i));
+			}
+		}
+		
+		model.addAttribute("coches", coches_2);
+		
 		return "views_coches/coches";
 		 
 	}
@@ -43,6 +108,16 @@ public class CocheController {
 	
 	@PostMapping("/coches")
 	public String saveCoche(@ModelAttribute("coche")Coche coche) {
+		
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		List<User> usuarios = userService.getAllUsers();
+		
+		for(int i = 0; i < usuarios.size(); i++) {
+			if(usuarios.get(i).getEmail().equals(username)) {
+				coche.setEscuderia(usuarios.get(i).getEscuderia());
+			}
+		}
+		
 		cocheService.saveCoche(coche);
 		return "redirect:/coches";
 	}
@@ -77,6 +152,7 @@ public class CocheController {
 	
 	@GetMapping("/coches/{id}")
 	public String deleteCoche(@PathVariable Long id) {
+		cocheService.getCocheById(id).setEscuderia(null);
 		cocheService.deleteCocheById(id);
 		return "redirect:/coches";
 	}
