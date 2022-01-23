@@ -9,11 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ima.fms.entity.Escuderia;
-import com.ima.fms.entity.Piloto;
 import com.ima.fms.entity.User;
-import com.ima.fms.service.PilotoService;
+import com.ima.fms.service.EscuderiaService;
 import com.ima.fms.service.UserService;
 
 @Controller
@@ -21,9 +21,12 @@ public class UserController {
 
 	private UserService userService;
 
-	public UserController(UserService userService) {
+	private EscuderiaService escuderiaService;
+
+	public UserController(UserService userService, EscuderiaService escuderiaService) {
 		super();
 		this.userService = userService;
+		this.escuderiaService = escuderiaService;
 	}
 
 	// Método Get Para usuarios
@@ -66,12 +69,6 @@ public class UserController {
 							&& (usuarios.get(i).getRoles().toString().equals("[Corresponsable]"))
 							&& (usuarios.get(i).getEscuderia().equals(escuderia)))) {
 				usuarios2.add(user);
-<<<<<<< HEAD
-
-			//	System.out.println("BBBBBBBBBBBBBBBBBBBBB" + usuarios2.get(i).getName());s
-
-=======
->>>>>>> 82cf06cad08d43e93e018872c56e308003c3ca83
 			}
 
 		}
@@ -100,6 +97,30 @@ public class UserController {
 
 	}
 
+	// Método para seleccionar escudería
+	@GetMapping("/escuderias/seleccionar/{id}")
+	public String SelectEscuderia(@PathVariable Long id, Model model) {
+
+		Escuderia escuderia = escuderiaService.getEscuderiaById(id);
+		List<User> usuarios = userService.getAllUsers();
+
+		System.out.println("escuderia " + escuderia.getNombre());
+
+		for (int i = 0; i <= usuarios.size(); i++) {
+			if (i == usuarios.size() - 1) {
+				User user = usuarios.get(i);
+				user.setEscuderia(escuderia);
+				user.setName_escu(escuderia.getNombre());
+				userService.updateUser(user);
+				escuderia.setNombre_responsable(user.getName());
+				escuderiaService.updateEscuderia(escuderia);
+			}
+
+		}
+
+		return "redirect:/registration?success";
+	}
+
 	// Metodo validar usuario
 	@GetMapping("/usuarios/validarUser/{id}")
 	public String validarUser(@PathVariable("id") Long id, Model model) {
@@ -109,7 +130,7 @@ public class UserController {
 		return "redirect:/usuarios";
 	}
 
-	// Metodo validar usuario
+	// Metodo invalidar usuario
 	@GetMapping("/usuarios/invalidarUser/{id}")
 	public String invalidarUser(@PathVariable("id") Long id, Model model) {
 		User user = userService.getUserById(id);
@@ -121,13 +142,27 @@ public class UserController {
 	// Handler method para delete
 	@GetMapping("/usuarios/{id}")
 	public String deleteUser(@PathVariable Long id) {
-			if (userService.getRoles() == null) {
-				userService.deleteUserById(id);
-			} else {
-				userService.getUserById(id).setEscuderia(null);
-				userService.getUserById(id).setRoles(null);
-				userService.deleteUserById(id);
+
+		List<Escuderia> escuderias = escuderiaService.getAllEscuderias();
+		List<User> usuarios = userService.getAllUsers();
+
+		for (int i = 0; i < escuderias.size(); i++) {
+			for (int j = 0; j < usuarios.size(); j++) {
+				if (escuderias.get(i).getNombre_responsable() != (null)) {
+					if (escuderias.get(i).getNombre_responsable().equals(usuarios.get(j).getName())) {
+						escuderias.get(i).setNombre_responsable(null);
+					}
+				}
 			}
+		}
+
+		if (userService.getRoles() == null) {
+			userService.deleteUserById(id);
+		} else {
+			userService.getUserById(id).setEscuderia(null);
+			userService.getUserById(id).setRoles(null);
+			userService.deleteUserById(id);
+		}
 		return "redirect:/usuarios";
 	}
 

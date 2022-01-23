@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ima.fms.entity.Escuderia;
 import com.ima.fms.entity.Piloto;
+import com.ima.fms.entity.User;
+import com.ima.fms.service.EscuderiaService;
 import com.ima.fms.service.PilotoService;
 import com.ima.fms.service.UserService;
 
@@ -21,40 +23,73 @@ import org.springframework.ui.Model;
 public class PilotoController {
 
 	private PilotoService pilotoService;
+	private EscuderiaService escuderiaService;
+	private UserService userService;
 
-	public PilotoController(PilotoService pilotoService) {
+	public PilotoController(PilotoService pilotoService, EscuderiaService escuderiaService, UserService userService) {
 		super();
 		this.pilotoService = pilotoService;
+		this.escuderiaService = escuderiaService;
+		this.userService = userService;
 	}
 
 	@GetMapping("/pilotos")
 	public String listPilotos(Model model) {
-		/*String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		
-		UserService userService = null;
-		
-		Escuderia escuderia = userService.getEscuderiaByNameUser();
-
 		List<Piloto> pilotos = pilotoService.getAllPilotos();
-		List<Piloto> pilotos2 = pilotoService.getAllPilotos();
+		List<Piloto> pilotos_2 = pilotoService.getAllPilotos();
+		List<User> usuarios = userService.getAllUsers();
+		Escuderia escuderia = null;
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		
-		int a = pilotos2.size();
-
+		int a = pilotos_2.size();
+		
 		while (a != 0) {
-			pilotos2.remove(a - 1);
+			pilotos_2.remove(a - 1);
+			a--;
+		}
+		
+		for(int i = 0; i < usuarios.size(); i++) {
+			if(usuarios.get(i).getEmail().equals(username)) {
+				escuderia = usuarios.get(i).getEscuderia();
+			}
+		}
+		
+		for(int i = 0; i < pilotos.size(); i++) {
+			if(pilotos.get(i).getEscuderia().getNombre().equals(escuderia.getNombre())) {
+				pilotos_2.add(pilotos.get(i));
+			}
+		}
+		
+		model.addAttribute("pilotos", pilotos_2);
+		
+		return "views_pilotos/pilotos";
+
+	}	
+	
+	@GetMapping("/all_pilots_escu/{id}")
+	public String listPilotosUser(@PathVariable Long id, Model model) {
+		
+		List<Piloto> pilotos = pilotoService.getAllPilotos();
+		List<Piloto> pilotos_2 = pilotoService.getAllPilotos();
+		Escuderia escuderia = escuderiaService.getEscuderiaById(id);
+		
+		int a = pilotos_2.size();
+		
+		while (a != 0) {
+			pilotos_2.remove(a - 1);
 			a--;
 		}
 		
 		for(int i = 0; i < pilotos.size(); i++) {
-			if(pilotos.get(i).getEscuderia() == escuderia) {
-				pilotos2.add(pilotos.get(i));
+			if(pilotos.get(i).getEscuderia().getNombre().equals(escuderia.getNombre())) {
+				pilotos_2.add(pilotos.get(i));
 			}
 		}
 		
-		*/
-		model.addAttribute("pilotos", pilotoService.getAllPilotos());
-//		model.addAttribute("pilotos",pilotos2);
-		return "views_pilotos/pilotos";
+		model.addAttribute("pilotos", pilotos_2);
+		
+		return "views_pilotos/pilotos_escuderia";
 
 	}
 
@@ -67,6 +102,16 @@ public class PilotoController {
 
 	@PostMapping("/save_pilotos")
 	public String savePiloto(@ModelAttribute("piloto") Piloto piloto) {
+
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		List<User> usuarios = userService.getAllUsers();
+		
+		for(int i = 0; i < usuarios.size(); i++) {
+			if(usuarios.get(i).getEmail().equals(username)) {
+				piloto.setEscuderia(usuarios.get(i).getEscuderia());
+			}
+		}
+				
 		pilotoService.savePilotos(piloto);
 		return "redirect:/pilotos";
 	}

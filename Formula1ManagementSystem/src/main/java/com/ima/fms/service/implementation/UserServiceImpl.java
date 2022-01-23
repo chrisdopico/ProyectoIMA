@@ -53,15 +53,15 @@ public class UserServiceImpl implements UserService {
 		}
 		for (int i = 0; i < userReg.getRoles().size(); i++) {
 			if (userReg.getRoles().toString().equals("[Responsable]")) {
-				Escuderia escuderia = new Escuderia();
+/*				Escuderia escuderia = new Escuderia();
 				escuderia.setLogo("https://th.bing.com/th/id/OIP.IAcZdfxtyq4z1ts6R0AbCgHaHa?pid=ImgDet&rs=1");
 				escuderia.setNombre("En espera de creación");
 				escuderia.setTwitter("En espera de creación");
-
+*/
 				User user = new User(userReg.getName(), userReg.getUser(), userReg.getEmail(),
 						passwordEncoder.encode(userReg.getPassword()), userReg.isEnabled(), userReg.getRoles());
-				user.setEscuderia(escuderia);
-				user.setName_escu(escuderia.getNombre());
+/*				user.setEscuderia(escuderia);
+				user.setName_escu(escuderia.getNombre());*/
 				return userRepository.save(user);
 			}
 		}
@@ -76,6 +76,7 @@ public class UserServiceImpl implements UserService {
 		if (user == null || user.isEnabled() == false) {
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}
+				
 		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
 				mapRolesToAuthorities(user.getRoles()));
 	}

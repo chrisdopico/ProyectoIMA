@@ -60,6 +60,7 @@
 			<a th:href="@{/administrar}" class="btn btn-primary">Calendario</a>
 			<a th:href="@{/administrar}" class="btn btn-primary">Equipos</a>
 			<a th:href="@{/circuitos}" class="btn btn-primary">Circuitos</a>
+			<a th:href="@{/simulacion}" class="btn btn-primary">Herramientas de Simulación</a>
 		</div>
 	</div>
 	<hr>
@@ -102,7 +103,7 @@
 					<td th:text="${circuito.curvas_lentas}"></td>
 					<td th:text="${circuito.curvas_medias}"></td>
 					<td th:text="${circuito.curvas_rapidas}"></td>
-					<td th:text="${circuito.trazado}"></td>
+					<td><img th:src="${circuito.trazado}" width="200" height="200"></td>
 					<td>
 						<a th:href="@{/circuitos/edit/{id}(id=${circuito.id})}" class="btn btn-primary">Editar</a>
 						<a th:href="@{/circuitos/{id}(id=${circuito.id})}" class="btn btn-danger">Eliminar</a>

@@ -76,18 +76,25 @@ public class EscuderiaController {
 		return "redirect:/escuderia";
 	}
 
-/*	public String getEscuderiaByUserName(String name) {
-		List<Escuderia> escuderias = escuderiaService.getAllEscuderias();
-		Escuderia escuderia = null;
-		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+	@GetMapping("/escuderias/show")
+	public String showEscuderias(Model model) {
 
+		List<Escuderia> escuderias = escuderiaService.getAllEscuderias();
+		List<Escuderia> escuderias_2 = escuderiaService.getAllEscuderias();
+		int a = escuderias_2.size();
+
+		while (a != 0) {
+			escuderias_2.remove(a - 1);
+			a--;
+		}
 		for (int i = 0; i < escuderias.size(); i++) {
-			for (int j = 0; j < escuderias.get(i).getNombres_responsables().size(); j++) {
-				if (escuderias.get(i).getNombres_responsables().get(j).equals(username)) {
-					escuderia = escuderias.get(i);
-				}
+			if (((escuderias.get(i).getNombre_responsable()) == (null))) {
+				escuderias_2.add(escuderias.get(i));
 			}
 		}
-		return escuderia.getNombre();
-	}*/
+
+		model.addAttribute("escuderias", escuderias_2);
+		return "views_login/select_escuderia";
+
+	}
 }

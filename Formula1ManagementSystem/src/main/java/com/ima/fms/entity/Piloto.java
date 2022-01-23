@@ -52,7 +52,7 @@ public class Piloto {
 	}
 
 	public Piloto(String nombre, String apellidos, String siglas, String dorsal, String foto, String pais,
-			String twitter) {
+			String twitter, Escuderia escuderia) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -61,6 +61,7 @@ public class Piloto {
 		this.foto = foto;
 		this.pais = pais;
 		this.twitter = twitter;
+		this.escuderia = escuderia;
 	}
 
 	public Long getId() {
