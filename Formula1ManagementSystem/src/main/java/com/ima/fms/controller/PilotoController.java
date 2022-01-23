@@ -66,7 +66,7 @@ public class PilotoController {
 		return "views_pilotos/pilotos";
 
 	}	
-	
+	//a
 	@GetMapping("/all_pilots_escu/{id}")
 	public String listPilotosUser(@PathVariable Long id, Model model) {
 		
