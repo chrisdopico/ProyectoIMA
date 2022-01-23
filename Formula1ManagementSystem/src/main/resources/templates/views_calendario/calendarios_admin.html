@@ -79,20 +79,28 @@
 		<table class="table table-striped table bordered">
 			<thead class="table-dark">
 				<tr>
+					<th>Id</th>
 					<th>Evento</th>
 					<th>Fecha</th>
 					<th>País</th>
 					<th>Ciudad</th>
 					<th>Circuito</th>
+					<th>Acción</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="calendario: ${calendarios}">
+					<td th:text="${calendario.idCalendario}"></td>
 					<td th:text="${calendario.nombre}"></td>
 					<td th:text="${calendario.fecha}"></td>
 					<td th:text="${calendario.pais}"></td>
 					<td th:text="${calendario.ciudad}"></td>
 					<td th:text="${calendario.nombre_circuito}"></td>
+					<td>
+						<a th:href="@{/calendarios/edit/{id}(id=${calendario.idCalendario})}" class="btn btn-primary">Editar</a>
+						<a th:href="@{/calendarios/{id}(id=${calendario.idCalendario})}" class="btn btn-danger">Eliminar</a>
+
+					</td>
 				</tr>
 
 			</tbody>

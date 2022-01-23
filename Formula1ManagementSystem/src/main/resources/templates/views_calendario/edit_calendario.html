@@ -71,25 +71,38 @@
 			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
 				<h1>Modificar Evento</h1>
 				<div class="card-body">
-					<form th:action="@{/eventos}" th:object="${eventos}" method="POST">
+					<form th:action="@{/calendarios/{id} (id=${calendario.idCalendario})}" th:object="${calendario}" method="POST" id="circuitoForm">
 						<div class="form-group">
 							<label>Título del Evento</label>
-							<input type="text" name"evento" th:field="*{evento}"
+							<input type="text" name"nombre" th:field="*{nombre}"
 								placeholder="Ingresar Título del evento" class="form-control" required>
 						</div>
-                        <form name="formulario" method="post" required>
-							<label>Fecha y hora del evento</label>
-                            <br>
-							<input type="datetime-local" />
-						</form>
-                        
+						<div class="form-group">
+							<label>País del Evento</label>
+							<input type="text" name"pais" th:field="*{pais}" placeholder="Ingresar País del evento"
+								class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Ciudad del Evento</label>
+							<input type="text" name"ciudad" th:field="*{ciudad}"
+								placeholder="Ingresar ciudad del evento" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Fecha del Evento</label>
+							<input type="date" name"fecha" th:field="*{fecha}" class="form-control" required>
+						</div>
+						<br>
+						<div class="form-group">
+							<label>Circuito</label>
+							<select name="id" th:object="${circuito}" form="circuitoForm">
+								<option th:each="circuito: ${circuitosList}" th:value="${circuito.id}"
+									th:text="${circuito.nombre}" th:selected="true" required />
+							</select>
+						</div>
 						<br>
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary">
-								Crear
-							</button>
-                            <button type="submit" class="btn btn-danger">
-								Borrar
+								Guardar
 							</button>
 						</div>
 					</form>
