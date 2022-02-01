@@ -1,5 +1,8 @@
 package com.ima.fms.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "t_pilotos")
@@ -46,6 +50,17 @@ public class Piloto {
 	@JoinTable(name = "pilotos_escuderia", joinColumns = @JoinColumn(name = "piloto_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "escuderia_id", referencedColumnName = "id"))
 
 	Escuderia escuderia;
+	
+	
+	@OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "piloto_id")
+	private List<DetalleVotacion> detallesVotacion = new ArrayList<>();
+	
+	
+	
+	public Piloto (Long id) {
+		this.id=id;
+	}
 
 	public Piloto() {
 
