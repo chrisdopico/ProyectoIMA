@@ -52,12 +52,6 @@ public class Piloto {
 	Escuderia escuderia;
 	
 	
-	@OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "piloto_id")
-	private List<DetalleVotacion> detallesVotacion = new ArrayList<>();
-	
-	
-	
 	public Piloto (Long id) {
 		this.id=id;
 	}
