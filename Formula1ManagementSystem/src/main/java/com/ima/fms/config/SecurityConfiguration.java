@@ -1,3 +1,4 @@
+
 package com.ima.fms.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
+	
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
@@ -34,14 +36,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		auth.setPasswordEncoder(passwordEncoder());
 		return auth;
 	}
+	
 
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(authenticationProvider());
 	}
+	
 
 	String[] resources = new String[] { "/include/**", "/css/**", "/icons/**", "/img/**", "/js/**", "/layer/**" };
 
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers(resources).permitAll().antMatchers("/", "/index").permitAll()
@@ -58,4 +64,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and()
 				.exceptionHandling().accessDeniedPage("/login");
 	}
+	
 }
