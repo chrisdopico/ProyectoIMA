@@ -21,7 +21,7 @@
 			<!-- Titulo -->
 			<h1>FORMULA 1</h1>
 			<!-- create navigation bar ( header) -->
-			<span> User</span>
+			<span sec:authentication="principal.username"> User</span>
 
 			<div class="navbar-header">
 				<a sec:authorize="isAuthenticated()"><a class="navbar-brand" href="#" th:href="@{/logout}">Cerrar
