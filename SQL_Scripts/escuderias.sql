@@ -1,0 +1,1 @@
+INSERT INTO `formula1`.`t_escuderias` (`logo`, `nombre`, `nombre_responsable`, `twitter`) VALUES ('prueba', 'prueba', 'prueba', 'prueba');
