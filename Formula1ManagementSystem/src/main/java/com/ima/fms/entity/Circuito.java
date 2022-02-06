@@ -24,7 +24,7 @@ public class Circuito {
 	@Column(name= "pais", nullable=false)
 	private String pais;
 	
-	@Column(name= "trazado", nullable=false)
+	@Column(name= "trazado", nullable=false, length = 999999)
 	private String trazado;
 	
 	@Column(name= "numero_de_vueltas", nullable=false)

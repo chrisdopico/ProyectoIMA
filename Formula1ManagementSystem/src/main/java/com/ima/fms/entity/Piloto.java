@@ -36,13 +36,13 @@ public class Piloto {
 	@Column(name = "dorsal", nullable = false)
 	private String dorsal;
 
-	@Column(name = "foto", nullable = false)
+	@Column(name = "foto", nullable = false, length = 999999)
 	private String foto;
 
 	@Column(name = "pais", nullable = false)
 	private String pais;
 
-	@Column(name = "twitter", nullable = false)
+	@Column(name = "twitter", nullable = false, length = 999999)
 	private String twitter;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

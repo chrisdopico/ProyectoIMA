@@ -56,18 +56,8 @@ public class VotacionFormController {
 		else {
 			return "views_votacion/errorIndex";
 		}
-		
-		
-
 	}
 	
-	
-	
-	
-	
-	
-	
-
 	//
 	@GetMapping("/votacionesIndex")
 	public String listVotacionesFormIndex(Model model){

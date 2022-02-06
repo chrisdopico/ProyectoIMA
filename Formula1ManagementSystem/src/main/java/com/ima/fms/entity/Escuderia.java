@@ -18,7 +18,7 @@ public class Escuderia {
 
 	@Column(name = "nombre")
 	private String nombre;
-	@Column(name = "logo")
+	@Column(name = "logo", length = 999999)
 	private String logo;
 	@Column(name = "twitter")
 	private String twitter;

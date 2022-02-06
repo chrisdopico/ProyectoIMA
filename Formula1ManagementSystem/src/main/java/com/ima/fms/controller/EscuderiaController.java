@@ -1,6 +1,8 @@
 package com.ima.fms.controller;
 
 import javax.swing.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
@@ -26,9 +28,12 @@ public class EscuderiaController {
 
 	private EscuderiaService escuderiaService;
 
-	public EscuderiaController(EscuderiaService escuderiaService) {
+	private UserService userService;
+
+	public EscuderiaController(EscuderiaService escuderiaService, UserService userService) {
 		super();
 		this.escuderiaService = escuderiaService;
+		this.userService = userService;
 	}
 
 	@GetMapping("/all_escuderias")
@@ -122,19 +127,32 @@ public class EscuderiaController {
 	public String showEscuderias(Model model) {
 
 		List<Escuderia> escuderias = escuderiaService.getAllEscuderias();
-		List<Escuderia> escuderias_2 = escuderiaService.getAllEscuderias();
-		int a = escuderias_2.size();
-
-		while (a != 0) {
-			escuderias_2.remove(a - 1);
-			a--;
-		}
+		List<Escuderia> escuderias_2 = new ArrayList<>();
 		for (int i = 0; i < escuderias.size(); i++) {
 			if (((escuderias.get(i).getNombre_responsable()) == (null))) {
 				escuderias_2.add(escuderias.get(i));
 			}
+
 		}
 
+		boolean flag = false;
+
+		if (escuderias_2.size() == 0) {
+			flag = true;
+			model.addAttribute("flag", flag);
+			flag = false;
+
+			List<User> usuarios = userService.getAllUsers();
+
+			for (int i = 0; i <= usuarios.size(); i++) {
+				if (i == usuarios.size() - 1) {
+					User user = usuarios.get(i);
+					userService.deleteUserById(user.getId());
+				}
+
+			}
+		}
+		
 		model.addAttribute("escuderias", escuderias_2);
 		return "views_login/select_escuderia";
 

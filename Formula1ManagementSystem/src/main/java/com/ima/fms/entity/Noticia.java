@@ -17,11 +17,11 @@ public class Noticia {
 	
 	@Column(name= "titulo", nullable=false)
 	private String titulo;
-	@Column(name= "texto", nullable=false)
+	@Column(name= "texto", nullable=false, length = 999999)
 	private String texto;
-	@Column(name= "link", nullable=true)
+	@Column(name= "link", nullable=true, length = 999999)
 	private String link;
-	@Column(name= "imagen", nullable=false)
+	@Column(name= "imagen", nullable=false, length = 999999)
 	private String imagen;
 	
 	

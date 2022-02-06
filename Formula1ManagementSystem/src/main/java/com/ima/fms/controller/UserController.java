@@ -104,8 +104,6 @@ public class UserController {
 		Escuderia escuderia = escuderiaService.getEscuderiaById(id);
 		List<User> usuarios = userService.getAllUsers();
 
-		System.out.println("escuderia " + escuderia.getNombre());
-
 		for (int i = 0; i <= usuarios.size(); i++) {
 			if (i == usuarios.size() - 1) {
 				User user = usuarios.get(i);
@@ -149,8 +147,11 @@ public class UserController {
 		for (int i = 0; i < escuderias.size(); i++) {
 			for (int j = 0; j < usuarios.size(); j++) {
 				if (escuderias.get(i).getNombre_responsable() != (null)) {
-					if (escuderias.get(i).getNombre_responsable().equals(usuarios.get(j).getName())) {
-						escuderias.get(i).setNombre_responsable(null);
+					if (usuarios.get(j).getId() == id) {
+						if (escuderias.get(i).getNombre_responsable().equals(usuarios.get(j).getName())) {
+							escuderias.get(i).setNombre_responsable(null);
+							escuderiaService.updateEscuderia(escuderias.get(i));
+						}
 					}
 				}
 			}

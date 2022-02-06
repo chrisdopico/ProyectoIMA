@@ -19,7 +19,7 @@
 					height="100">
 			</figure>
 			<!-- Titulo -->
-			<h1>FORMULA 1</h1>
+			<h1>FÓRMULA 1</h1>
 			<br>
 		</header>
 	</div><br>
@@ -49,6 +49,14 @@
 				</tr>
 			</tbody>
 		</table>
+	</div>
+	<hr>
+	<div class="container" th:if="${flag}">
+		<div class="row">
+			<h1>No hay escuderías disponibles, no podrá darse de alta, póngase en contacto con el administrador o puede darse de alta como corresponsable.</h1>
+		</div>
+		<hr>
+		<a th:href="@{/registration}" class="btn btn-primary">Regresar</a>
 	</div>
 </body>
 
