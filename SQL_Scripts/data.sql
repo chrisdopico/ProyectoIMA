@@ -10,11 +10,23 @@ VALUES ('Responsable');
 
 INSERT INTO `formula1`.`user` (`email`, `enabled`, `name`, `password`, `user`) 
 VALUES ('admin@example.com', 1, 'admin', '$2a$10$oxFmx9ZN1HIxpP2g99bRSufqMcRdJ5TKXDV9sKJeuUal818Su.peO', 'admin');
+INSERT INTO `formula1`.`user` (`email`, `enabled`, `name`, `password`, `user`) 
+VALUES ('responsable1@example.com', 1, 'responsable1', '$2a$10$GtTETubmhHGeYxPKTefNaOUQ2orlfZRgFcJCQ31OC0Kt2GzfOvomu', 'responsable1');
+INSERT INTO `formula1`.`user` (`email`, `enabled`, `name`, `password`, `user`) 
+VALUES ('responsable2@example.com', 1, 'responsable2', '$2a$10$GtTETubmhHGeYxPKTefNaOUQ2orlfZRgFcJCQ31OC0Kt2GzfOvomu', 'responsable2');
+INSERT INTO `formula1`.`user` (`email`, `enabled`, `name`, `password`, `user`) 
+VALUES ('responsable3@example.com', 1, 'responsable3', '$2a$10$GtTETubmhHGeYxPKTefNaOUQ2orlfZRgFcJCQ31OC0Kt2GzfOvomu', 'responsable3');
 
 #3 Tabla users_roles
 
 INSERT INTO `formula1`.`users_roles` (`user_id`, `role_id`)
 VALUES (1,1);
+INSERT INTO `formula1`.`users_roles` (`user_id`, `role_id`)
+VALUES (2,2);
+INSERT INTO `formula1`.`users_roles` (`user_id`, `role_id`)
+VALUES (3,2);
+INSERT INTO `formula1`.`users_roles` (`user_id`, `role_id`)
+VALUES (4,2);
 
 #4 Tabla t_noticias
 
@@ -284,7 +296,12 @@ INSERT INTO `formula1`.`coches_escuderia` (`escuderia_id`, `coche_id`) VALUES ('
 INSERT INTO `formula1`.`coches_escuderia` (`escuderia_id`, `coche_id`) VALUES ('9', '9');
 INSERT INTO `formula1`.`coches_escuderia` (`escuderia_id`, `coche_id`) VALUES ('10', '10');
 
-
-
+#15 Tabla users_escuderia
+INSERT INTO `formula1`.`users_escuderia`(`escuderia_id`,`user_id`)
+VALUES('1','2');
+INSERT INTO `formula1`.`users_escuderia`(`escuderia_id`,`user_id`)
+VALUES('2','3');
+INSERT INTO `formula1`.`users_escuderia`(`escuderia_id`,`user_id`)
+VALUES('3','4');
 
 
